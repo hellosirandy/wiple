@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserProvider } from '../../providers/providers';
-
-@IonicPage()
+import { SignupPage } from '../signup/signup';
+import { CheckPage } from '../check/check';
 @Component({
   selector: 'page-signin',
   templateUrl: 'signin.html',
@@ -11,6 +11,8 @@ import { UserProvider } from '../../providers/providers';
 export class SigninPage implements OnInit {
   signinForm: FormGroup;
   submitTried: boolean = false;
+
+  errorMessage: string;
 
   constructor(
     public navCtrl: NavController, 
@@ -32,13 +34,24 @@ export class SigninPage implements OnInit {
   onSubmit() {
     this.submitTried = true;
     if (this.signinForm.valid) {
-      console.log(this.signinForm);
-      
+      const email = this.signinForm.get('email').value;
+      const password = this.signinForm.get('password').value;
+      this.user.signinWithEmail(email, password).then(_ => {
+        this.navCtrl.push(CheckPage, {}, { animate: true });
+      }).catch(err => {
+        this.errorMessage = err.message;
+      });
     }
   }
 
-  async signinWithFacebook() {
-    await this.user.signinWithFacebook();
+  signinWithFacebook() {
+    this.user.signinWithFacebook().then(_ => {
+      this.navCtrl.push(CheckPage, {}, { animate: true });
+    });
+  }
+
+  goSignup() {
+    this.navCtrl.push(SignupPage);
   }
 
 }

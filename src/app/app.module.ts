@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { IonicStorageModule } from '@ionic/Storage';
 
 import { MyApp } from './app.component';
 import { PagesModule } from '../pages/pages.module';
@@ -13,6 +14,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FirebaseConfig } from '../environments/environments';
 import { UserProvider } from '../providers/user/user';
+import { ConnectionProvider } from '../providers/connection/connection';
+import { CoupleProvider } from '../providers/couple/couple';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,7 @@ import { UserProvider } from '../providers/user/user';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FirebaseConfig, 'wiple'),
+    IonicStorageModule.forRoot(),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     PagesModule,
@@ -34,7 +38,9 @@ import { UserProvider } from '../providers/user/user';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserProvider
+    UserProvider,
+    ConnectionProvider,
+    CoupleProvider
   ]
 })
 export class AppModule {}

@@ -1,0 +1,93 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Wiple</ion-title>
+    <ion-buttons *ngIf="!mobile" end>
+      <button ion-button icon-only (click)="handleProfileClick($event)">
+        <ion-icon ios="ios-contact" md="md-contact"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h3 class="page-title" lang="zh-Hant">
+    Get Connection With Your Love!
+  </h3>
+  <ion-row>
+    <ion-col col-12 offset-0 col-md-8 offset-md-2 col-lg-6 offset-lg-3>
+      <ion-row justify-content-around>
+        <ion-col col-3>
+          <img src="/assets/imgs/heart.svg" alt="">
+        </ion-col>
+        <ion-col col-3 class="middle">
+          <img src="/assets/imgs/lock.svg" class="lock" [ngStyle]="{'opacity': foundProfilePic ? 0 : 1}">
+          <img [src]=" foundProfilePic||'/assets/imgs/lock.svg'" class="photo" [ngStyle]="{'opacity': foundProfilePic ? 1 : 0}">
+        </ion-col>
+        <ion-col col-3>
+          <img src="/assets/imgs/heart.svg" alt="">
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4>
+      <div class="input-section">
+        <form *ngIf="status === 'search'" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+          <label for="email">Enter His/Her Email</label>
+          <span class="form-errors"
+            *ngIf="searchForm.get('email').invalid && submitTried">
+            * Invalid email
+          </span>
+          <ion-input formControlName="email"></ion-input>
+          <button ion-button icon-start class="round-btn" full type="submit" color="wiple-blue">
+            <ion-icon name="search"></ion-icon>
+            Search
+          </button>
+        </form>
+        <div *ngIf="status === 'found'" class="submitted-div">
+          <h3>{{foundUser.displayName}}</h3>
+          <button class="round-btn" 
+            *ngIf="currentUserKey !== foundUser.key && !foundUser.couple" 
+            ion-button icon-start full 
+            color="wiple-blue"
+            (click)="handleSendClick()"
+          >
+            <ion-icon name="send"></ion-icon>
+            Send Request
+          </button>
+          <p *ngIf="currentUserKey === foundUser.key" class="supplement">Say hello to yourself.</p>
+          <p *ngIf="foundUser.couple" class="supplement">is currently unavailable</p>
+          <button ion-button class="round-btn" full color="light" (click)="handleTryOtherClick()">
+            Try other
+          </button>
+        </div>
+        <div *ngIf="status === 'notfound'" class="submitted-div">
+          <h3>User not found.</h3>
+          <button ion-button class="round-btn" full color="light" (click)="handleTryOtherClick()">
+            Try other
+          </button>
+        </div>
+        <div *ngIf="status === 'sent'" class="submitted-div">
+          <h3>{{foundUser.displayName}}</h3>
+          <p class="supplement">Request has been sent</p>
+          <button ion-button class="round-btn" full color="light" (click)="removeInvitation()">
+            Cancel request
+          </button>
+        </div>
+        <div *ngIf="status === 'received'" class="submitted-div">
+          <h3>{{foundUser.displayName}}</h3>
+          <p class="supplement">sent a request to you</p>
+          <button ion-button class="round-btn" full color="wiple-blue" (click)="acceptInvitation()">
+            Accept request
+          </button>
+          <button ion-button class="round-btn" full color="danger" (click)="removeInvitation()">
+            Decline request
+          </button>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

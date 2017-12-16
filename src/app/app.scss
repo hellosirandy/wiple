@@ -40,7 +40,7 @@ ion-content {
     padding-bottom: 30px;
     font-size: 6rem;
     text-align: center;
-    color: map-get($colors, wiple-text);
+    color: map-get($colors, wiple-green);
   }
   @media (max-width: $sm-screen) {
     h3.page-title {
@@ -116,4 +116,35 @@ ion-content.signinup {
       margin-bottom: 16px;
     }
   }
+}
+
+ion-menu {
+  div.scroll-content {
+    background-color: map-get($colors, wiple-light-pink);
+    
+  }
+  .item {
+    background-color: map-get($colors, wiple-light-pink) !important;
+    ion-icon {
+      font-size: inherit !important;
+      width: 20px;
+    }
+  }
+  ion-footer {
+    .item-inner {
+      border-bottom: none !important;
+    }
+  }
+}
+
+img.photo {
+  border-radius: 50%;
+  width: 100%;
+}
+
+input[_ngcontent-c0] {
+  margin-bottom: 20px;
+}
+.ngx-datepicker-calendar-container {
+  z-index: 100;
 }
