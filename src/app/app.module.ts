@@ -8,6 +8,7 @@ import { IonicStorageModule } from '@ionic/Storage';
 import { MyApp } from './app.component';
 import { PagesModule } from '../pages/pages.module';
 
+import { NgDatepickerModule } from 'ng2-datepicker';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -16,6 +17,9 @@ import { FirebaseConfig } from '../environments/environments';
 import { UserProvider } from '../providers/user/user';
 import { ConnectionProvider } from '../providers/connection/connection';
 import { CoupleProvider } from '../providers/couple/couple';
+import { ComponentsModule } from '../components/components.module';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,9 @@ import { CoupleProvider } from '../providers/couple/couple';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     PagesModule,
+    NgDatepickerModule,
+    ComponentsModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

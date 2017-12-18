@@ -1,0 +1,18 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Wiple</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="content">
+    <h3 class="title">New Expense</h3>
+    <hr *ngIf="!mobile">
+    <div class="phases">
+      <edit-expense-phase-one></edit-expense-phase-one>
+    </div>
+  </div>
+</ion-content>

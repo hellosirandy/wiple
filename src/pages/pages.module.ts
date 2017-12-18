@@ -7,6 +7,8 @@ import { SignupPage } from './signup/signup';
 import { MainAppPage } from './main-app/main-app';
 import { ConnectPage } from './connect/connect';
 import { ProfilePopoverPage } from './profile-popover/profile-popover';
+import { EditExpensePage } from './edit-expense/edit-expense';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
 	declarations: [
@@ -16,7 +18,8 @@ import { ProfilePopoverPage } from './profile-popover/profile-popover';
 		MainAppPage,
 		ConnectPage,
 		SignupPage,
-		ProfilePopoverPage
+		ProfilePopoverPage,
+		EditExpensePage
 	],
 	imports: [
 		IonicPageModule.forChild(CheckPage),
@@ -26,6 +29,8 @@ import { ProfilePopoverPage } from './profile-popover/profile-popover';
 		IonicPageModule.forChild(ConnectPage),
 		IonicPageModule.forChild(SignupPage),
 		IonicPageModule.forChild(ProfilePopoverPage),
+		IonicPageModule.forChild(EditExpensePage),
+		ComponentsModule
 	],
 	exports: [
 		CheckPage,
@@ -34,7 +39,8 @@ import { ProfilePopoverPage } from './profile-popover/profile-popover';
 		MainAppPage,
 		ConnectPage,
 		SignupPage,
-		ProfilePopoverPage
+		ProfilePopoverPage,
+		EditExpensePage
 	],
 	providers: [
 		

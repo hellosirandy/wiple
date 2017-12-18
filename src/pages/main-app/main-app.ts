@@ -3,6 +3,7 @@ import { NavController, NavParams, Platform, PopoverController } from 'ionic-ang
 import { CoupleProvider, UserProvider } from '../../providers/providers';
 import { Couple } from '../../models/models';
 import { ProfilePopoverPage } from '../profile-popover/profile-popover';
+import { EditExpensePage } from '../edit-expense/edit-expense';
 
 @Component({
   selector: 'page-main-app',
@@ -36,6 +37,10 @@ export class MainAppPage {
     popover.present({
       ev: event
     });
+  }
+
+  handleNewExpenseClick() {
+    this.navCtrl.push(EditExpensePage);
   }
 
 }

@@ -3,8 +3,7 @@ import { NavController, NavParams, PopoverController } from 'ionic-angular';
 import { ProfilePopoverPage } from '../profile-popover/profile-popover';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConnectionProvider, UserProvider } from '../../providers/providers';
-import { Invitation, User } from '../../models/models';
-import { Observable } from 'rxjs/Observable';
+import { Invitation } from '../../models/models';
 import { CheckPage } from '../check/check';
 
 @Component({
