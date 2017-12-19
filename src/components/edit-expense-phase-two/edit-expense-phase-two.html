@@ -1,0 +1,51 @@
+<div class="edit-expense-phase-two" [@phaseState]="state">
+  <form [formGroup]="secondForm" (ngSubmit)="onSubmit()">
+    <button class="round-btn" ion-button color="wiple-light-pink" full (click)="handleButtonClick('same')" type="button" full>
+      Same Amount Each
+    </button>
+    <div #same class="collapse" formGroupName="same" [ngStyle]="{'maxHeight': (amountType==='same' ? sameDivHeight : 0) + 'px'}">
+      <ion-input placeholder="Total amount" formControlName="amount" type="number"
+        [ngClass]="{'error': secondForm.get('same.amount').invalid && submitTried}"></ion-input>
+    </div>
+    <button class="round-btn" ion-button color="wiple-light-pink" full (click)="handleButtonClick('diff')" type="button">
+      Different Amount
+    </button>
+    <div class="collapse" formGroupName="diff" #diff 
+      [ngStyle]="{'maxHeight': (amountType==='diff' ? diffDivHeight : 0) + 'px'}">
+      
+      <ion-row>
+        <ion-col col-3 class="profile-pic">
+          <div class="photo-div">
+            <img [src]="firstUser | profilePic" alt="" class="photo">
+          </div>
+          <h3 class="username">{{firstUser?.displayName || ''}}</h3>
+        </ion-col>
+        <ion-col col-9 class="input-col">
+          <ion-input placeholder="Amount" formControlName="firstAmount" type="number"
+            [ngClass]="{'error': secondForm.get('diff.firstAmount').invalid && submitTried}"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3 class="profile-pic">
+          <div class="photo-div">
+            <img [src]="secondUser | profilePic" alt="" class="photo">
+          </div>
+          <h3 class="username">{{secondUser?.displayName || ''}}</h3>
+        </ion-col>
+        <ion-col col-9 class="input-col">
+
+        <ion-input placeholder="Amount" formControlName="secondAmount" type="number" 
+          [ngClass]="{'error': secondForm.get('diff.secondAmount').invalid && submitTried}"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="exit-buttons">
+      <button class="round-btn" ion-button color="light" type="button" (click)="handleBackClick()" full>
+        Back
+      </button>
+      <button class="round-btn" ion-button color="wiple-blue" type="submit" full>
+        Continue
+      </button>
+    </div>
+  </form>
+</div>

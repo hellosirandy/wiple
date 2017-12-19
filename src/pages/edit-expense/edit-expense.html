@@ -12,7 +12,24 @@
     <h3 class="title">New Expense</h3>
     <hr *ngIf="!mobile">
     <div class="phases">
-      <edit-expense-phase-one></edit-expense-phase-one>
+      <edit-expense-phase-one *ngIf="phase === 1"
+        [exp]="exp"
+        (continue)="continue($event)">
+      </edit-expense-phase-one>
+      <edit-expense-phase-two *ngIf="phase === 2"
+        [exp]="exp"
+        [firstUser]="firstUser"
+        [secondUser]="secondUser"
+        (continue)="continue($event)"
+        (back)="back($event)">
+      </edit-expense-phase-two>
+      <edit-expense-phase-three *ngIf="phase === 3"
+        [exp]="exp"
+        [firstUser]="firstUser"
+        [secondUser]="secondUser"
+        (continue)="saveExpense($event)"
+        (back)="back($event)">
+      </edit-expense-phase-three>
     </div>
   </div>
 </ion-content>

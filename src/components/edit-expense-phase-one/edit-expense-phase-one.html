@@ -1,15 +1,15 @@
 <div class="edit-expense-phase-one" [@phaseState] = "state">
-  <form [formGroup]="oneForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="firstForm" (ngSubmit)="onSubmit()">
     <ng-datepicker formControlName="date" [options]="datepickerOptions"></ng-datepicker>
     <category-icon *ngFor="let category of categories"
       [button]="true" [category]="category"
-      [selected]="oneForm.get('category').value === category"
+      [selected]="firstForm.get('category').value === category"
       (click)="handleCategoryClick(category)">
     </category-icon>
     <h3 class="category">Category:
-      <span>{{oneForm.get('category').value}}</span>
+      <span>{{firstForm.get('category').value}}</span>
     </h3>
-    <span class="form-errors" *ngIf="oneForm.get('description').invalid && submitTried">
+    <span class="form-errors" *ngIf="firstForm.get('description').invalid && submitTried">
       * Description is required
     </span>
     <ion-input placeholder="Description" formControlName="description"></ion-input>

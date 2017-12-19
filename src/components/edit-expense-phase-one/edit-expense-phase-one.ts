@@ -1,34 +1,46 @@
-import { AfterViewInit, Component, OnInit, animate, state, style, trigger, transition } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output,
+  animate, state, style, trigger, transition
+} from '@angular/core';
 import { DatepickerOptions } from 'ng2-datepicker';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ExpenseCategory } from '../../enums/enums';
+import { ExpenseCategory, PhaseState } from '../../enums/enums';
+import { Expense } from '../../models/models';
 
 @Component({
   selector: 'edit-expense-phase-one',
   templateUrl: 'edit-expense-phase-one.html',
   animations: [
     trigger('phaseState', [
-      state('hidden', style({
-        opacity: 0
-      })),
-      state('visible', style({
+      state(PhaseState.Visible, style({
         opacity: 1,
-        transform: 'translateY(0)'
+        transform: 'translateX(0)'
       })),
-      state('next', style({
+      state(PhaseState.Continue, style({
         opacity: 0,
-        transform: 'translateY(300px)'
+        transform: 'translateX(-300px)'
       })),
-      transition('hidden => visible', [
-        animate(1000)
+      state(PhaseState.Back, style({
+        opacity: 0,
+        transform: 'translateX(300px)'
+      })),
+      transition('void => *', [
+        style({
+          opacity: 0
+        }),
+        animate(600)
       ]),
-      transition('visible => next', [
-        animate(200)
+      transition(`${PhaseState.Visible} => ${PhaseState.Continue}`, [
+        animate('300ms ease')
+      ]),
+      transition(`${PhaseState.Visible} => ${PhaseState.Back}`, [
+        animate('300ms ease')
       ])
     ])
   ]
 })
-export class EditExpensePhaseOneComponent implements AfterViewInit, OnInit {
+export class EditExpensePhaseOneComponent implements OnInit {
+  @Input() exp: Expense;
+  @Output() continue = new EventEmitter<any>();
   datepickerOptions: DatepickerOptions = {
     minYear: 1970,
     maxYear: new Date().getFullYear()+1,
@@ -36,34 +48,36 @@ export class EditExpensePhaseOneComponent implements AfterViewInit, OnInit {
     barTitleFormat: 'MMMM YYYY',
     firstCalendarDay: 0,
   };
-  oneForm: FormGroup;
+  firstForm: FormGroup;
   categories: string[] = [];
-  state = 'hidden';
+  state = PhaseState.Visible;
   submitTried = false;
   constructor() {
     
   }
 
   ngOnInit() {
-    this.oneForm = new FormGroup({
-      'date': new FormControl(new Date(), Validators.required),
-      'category': new FormControl(ExpenseCategory.Else, Validators.required),
-      'description': new FormControl(null, Validators.required)
+    this.firstForm = new FormGroup({
+      'date': new FormControl(this.exp.date, Validators.required),
+      'category': new FormControl(this.exp.category, Validators.required),
+      'description': new FormControl(this.exp.description, Validators.required)
     });
     this.categories = Object.keys(ExpenseCategory).map(k => ExpenseCategory[k]);
   }
 
-  ngAfterViewInit() {
-    this.state = 'visible';
-  }
-
   handleCategoryClick(category) {
-    this.oneForm.get('category').setValue(category);
+    this.firstForm.get('category').setValue(category);
   }
 
   onSubmit() {
     this.submitTried = true;
-    this.state = 'next';
+    if (this.firstForm.valid) {
+      this.state = PhaseState.Continue;
+      setTimeout(() => {
+        this.continue.emit(this.firstForm.getRawValue());
+      }, 300);
+    }
+    
   }
 
 }

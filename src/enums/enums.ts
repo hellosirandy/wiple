@@ -11,6 +11,23 @@ enum ExpenseCategory {
   Gift = 'gift'
 }
 
+enum PayType {
+  Allpay = 'allpay',
+  Treat = 'treat',
+  Payfirst = 'payfirst',
+  Custom = 'custom',
+  Wiple = 'wiple'
+}
+
+enum PhaseState {
+  Hidden = 'hidden',
+  Visible = 'visible',
+  Continue = 'continue',
+  Back = 'back'
+}
+
 export {
-  ExpenseCategory
+  ExpenseCategory,
+  PayType,
+  PhaseState
 }

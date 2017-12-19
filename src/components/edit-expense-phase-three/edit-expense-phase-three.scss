@@ -1,0 +1,82 @@
+edit-expense-phase-three {
+  div.edit-expense-phase-three {
+    div.stats {
+      margin-top: -20px;
+      margin-bottom: 30px;
+      h3, h4 {
+        text-align: right;
+        span.amount {
+          min-width: 60px;
+          float: right;
+        }
+      }
+      h3 {
+        margin: 10px 0;
+      }
+      h4 {
+        margin: 5px 0;
+        font-size: 1.8rem;
+      }
+      @media (max-width: $sm-screen) {
+        span.amount {
+          min-width: 50px;
+        }
+        h3 {
+          font-size: 2rem;
+        }
+        h4 {
+          font-size: 1.5rem;
+        }
+      }
+    }
+    ion-row.who-first, div.custom-input {
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      div.img-div {
+        width: 50%;
+        margin: auto;
+        max-width: 100px;
+        img {
+          cursor: pointer;
+          &.selected {
+            border: solid 4px map-get($colors, wiple-pink);
+          }
+        }
+      }
+      h3.user-name {
+        text-align: center;
+        font-size: 1.8rem;
+      }
+    }
+    div.custom-input {
+      ion-row {
+        margin: 20px 0;
+        ion-col {
+          &.input-col {
+            display: -webkit-flex;
+            display:         flex;
+            -webkit-align-items: center;
+                    align-items: center;
+            -webkit-justify-content: center;
+                    justify-content: center;
+          }
+
+          div.photo-div {
+            width: 70%;
+            margin: auto;
+          }
+          h3.username {
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 0;
+          }
+          ion-input {
+            margin: 0;
+          }
+        }
+      }
+      
+    }
+  }
+  
+}

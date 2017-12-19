@@ -1,0 +1,79 @@
+<div class="edit-expense-phase-three" [@phaseState]="state">
+  <div class="stats">
+    <h3>Total $:
+      <span class="amount">{{totalAmount}}</span>
+    </h3>
+    <h4>{{firstUser?.displayName}} paid $:
+      <span class="amount">{{exp?.firstPaid}}</span>
+    </h4>
+    <h4>{{secondUser?.displayName}} paid $:
+      <span class="amount">{{exp?.secondPaid}}</span>
+    </h4>
+  </div>
+  <form [formGroup]="thirdForm" (ngSubmit)="onSubmit()">
+    <button class="round-btn" ion-button [color]="exp.payType==='allpay' ? 'wiple-pink' : 'wiple-light-pink'" full type="button"
+      full (click)="updatePayType('allpay')">
+      All paid
+    </button>
+    <div *ngFor="let section of ['treat', 'payfirst']">
+      <button class="round-btn" ion-button [color]="exp.payType===section ? 'wiple-pink' : 'wiple-light-pink'" full type="button"
+        full (click)="updatePayType(section)">
+        {{section==='treat' ? 'Treat' : 'Paid first'}}
+      </button>
+      <ion-row class="who-first" #whoFirstSection [ngStyle]="{'maxHeight': (exp.payType===section ? whoFirstHeight : 0) + 'px'}">
+        <ion-col col-6>
+          <div class="img-div">
+            <img [src]="firstUser | profilePic" alt="" class="photo" [ngClass]="{'selected': thirdForm.get(section + '.which').value==='first'}"
+              (click)="handleImgClick(section, 'first')">
+          </div>
+          <h3 class="user-name">{{firstUser?.displayName || ' '}}</h3>
+        </ion-col>
+        <ion-col col-6>
+          <div class="img-div">
+            <img [src]="secondUser | profilePic" alt="" class="photo" [ngClass]="{'selected': thirdForm.get(section + '.which').value==='second'}"
+              (click)="handleImgClick(section, 'second')">
+          </div>
+          <h3 class="user-name">{{secondUser?.displayName || ' '}}</h3>
+        </ion-col>
+      </ion-row>
+    </div>
+    <button class="round-btn" ion-button [color]="exp.payType==='custom' ? 'wiple-pink' : 'wiple-light-pink'" full type="button"
+      full (click)="updatePayType('custom')">
+      Custom payment
+    </button>
+    <div class="custom-input" formGroupName="custom" #customInput 
+      [ngStyle]="{'maxHeight': (exp.payType==='custom' ? customInputHeight : 0) + 'px'}">
+      <ion-row>
+        <ion-col col-3 class="profile-pic">
+          <div class="photo-div">
+            <img [src]="firstUser | profilePic" alt="" class="photo">
+          </div>
+          <h3 class="username">{{firstUser?.displayName || ''}}</h3>
+        </ion-col>
+        <ion-col col-9 class="input-col">
+          <ion-input placeholder="Amount" formControlName="first" type="number" [ngClass]="{'error': thirdForm.get('custom.first').invalid && submitTried}"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3 class="profile-pic">
+          <div class="photo-div">
+            <img [src]="secondUser | profilePic" alt="" class="photo">
+          </div>
+          <h3 class="username">{{secondUser?.displayName || ''}}</h3>
+        </ion-col>
+        <ion-col col-9 class="input-col">
+          <ion-input placeholder="Amount" formControlName="second" type="number" [ngClass]="{'error': thirdForm.get('custom.second').invalid && submitTried}"></ion-input>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="exit-buttons">
+      <button class="round-btn" ion-button color="light" type="button" (click)="handleBackClick()" full>
+        Back
+      </button>
+      <button class="round-btn" ion-button color="wiple-blue" type="submit" full>
+        Confirm
+      </button>
+    </div>
+  </form>
+  
+</div>

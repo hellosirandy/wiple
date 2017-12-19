@@ -20,6 +20,8 @@ import { CoupleProvider } from '../providers/couple/couple';
 import { ComponentsModule } from '../components/components.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PipesModule } from '../pipes/pipes.module';
+import { ExpenseProvider } from '../providers/expense/expense';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PagesModule,
     NgDatepickerModule,
     ComponentsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    PipesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,7 +50,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
     ConnectionProvider,
-    CoupleProvider
+    CoupleProvider,
+    ExpenseProvider
   ]
 })
 export class AppModule {}

@@ -1,0 +1,45 @@
+edit-expense-phase-two {
+  
+  ion-input {
+    margin-top: 0;
+    margin-bottom: 16px;
+    &.error {
+      input[type=number] {
+        border-color: map-get($colors, danger) !important;
+      }
+    }
+  }
+  ion-row {
+    margin-bottom: 20px;
+    @media (max-width: $sm-screen) {
+      margin-bottom: 10px;
+    }
+  }
+  div.collapse {
+    overflow-y: hidden;
+    transition: max-height 0.4s ease;
+  }
+  ion-col {
+    &.input-col {
+      display: -webkit-flex;
+      display:         flex;
+      -webkit-align-items: center;
+              align-items: center;
+      -webkit-justify-content: center;
+              justify-content: center;
+    }
+
+    div.photo-div {
+      width: 70%;
+      margin: auto;
+    }
+    h3.username {
+      font-size: 1.5rem;
+      text-align: center;
+      margin: 0;
+    }
+    ion-input {
+      margin: 0;
+    }
+  }
+}
