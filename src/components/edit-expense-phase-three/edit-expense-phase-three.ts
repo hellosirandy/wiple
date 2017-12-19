@@ -56,7 +56,7 @@ export class EditExpensePhaseThreeComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.totalAmount = this.exp.firstExpense + this.exp.secondExpense;
-    if (this.exp.payType === PayType.Allpay && this.exp.firstPaid === 0 && this.exp.secondPaid === 0) {
+    if (this.totalAmount !== this.exp.firstPaid + this.exp.secondPaid) {
       this.exp.firstPaid = this.exp.firstExpense;
       this.exp.secondPaid = this.exp.secondExpense;
     }
@@ -106,7 +106,8 @@ export class EditExpensePhaseThreeComponent implements AfterViewInit, OnInit {
 
   updateAmount() {
     if (this.exp.payType === PayType.Allpay) {
-      this.exp.firstPaid = this.exp.secondPaid = this.totalAmount / 2;
+      this.exp.firstPaid = this.exp.firstExpense;
+      this.exp.secondPaid = this.exp.secondExpense;
     } else if (this.exp.payType === PayType.Treat || this.exp.payType === PayType.Payfirst) {
       if (this.thirdForm.get(`${this.exp.payType}.which`).value === 'first') {
         this.exp.firstPaid = this.totalAmount;
