@@ -36,7 +36,7 @@ import { User, Expense } from '../../models/models';
     ])
   ]
 })
-export class EditExpensePhaseTwoComponent implements AfterViewInit, OnInit {
+export class EditExpensePhaseTwoComponent implements OnInit {
   @ViewChild('same') sameDiv: ElementRef;
   @ViewChild('diff') diffDiv: ElementRef;
   @Input() firstUser: User;
@@ -48,8 +48,6 @@ export class EditExpensePhaseTwoComponent implements AfterViewInit, OnInit {
   secondForm: FormGroup;
   submitTried = false;
   amountType = '';
-  sameDivHeight = 0;
-  diffDivHeight = 0;
 
   constructor() {
     
@@ -73,13 +71,6 @@ export class EditExpensePhaseTwoComponent implements AfterViewInit, OnInit {
         'secondAmount': new FormControl(total > 0 ? this.exp.secondExpense : null, Validators.required)
       })
     });
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.sameDivHeight = this.sameDiv.nativeElement.scrollHeight;
-      this.diffDivHeight = this.diffDiv.nativeElement.scrollHeight;
-    }, 0);
   }
   
   onSubmit() {

@@ -47,6 +47,7 @@ export class EditExpensePhaseThreeComponent implements AfterViewInit, OnInit {
   totalAmount = 0;
   thirdForm: FormGroup;
   whoFirstHeight = 0;
+  whoFirst;
   customInputHeight = 0;
   state = PhaseState.Visible;
 
@@ -90,6 +91,7 @@ export class EditExpensePhaseThreeComponent implements AfterViewInit, OnInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.whoFirstHeight = this.sections.first.nativeElement.scrollHeight;
+      this.whoFirst = this.sections.first.nativeElement;
       this.customInputHeight = this.customInput.nativeElement.scrollHeight;
     }, 0);
   }

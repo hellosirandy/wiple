@@ -1,0 +1,15 @@
+<div class="mobile-daytime">
+  <ion-row>
+    <ion-col col-4 class="select">
+      <ion-select [(ngModel)]="timeInterval" (ionChange)="changeType(timeInterval)">
+        <ion-option [value]="'year'">Year</ion-option>
+        <ion-option [value]="'month'">Month</ion-option>
+        <ion-option [value]="'day'">Day</ion-option>
+      </ion-select>
+    </ion-col>
+    <ion-col col-8>
+      <ng-datepicker [(ngModel)]="dateTime" [options]="timeInterval | datePickerOption" position="bottom-left" (ngModelChange)="changeDateTime()"></ng-datepicker>
+    </ion-col>
+  </ion-row>
+
+</div>

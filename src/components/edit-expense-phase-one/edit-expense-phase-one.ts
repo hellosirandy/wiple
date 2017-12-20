@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output,
   animate, state, style, trigger, transition
 } from '@angular/core';
-import { DatepickerOptions } from 'ng2-datepicker';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ExpenseCategory, PhaseState } from '../../enums/enums';
 import { Expense } from '../../models/models';
@@ -41,13 +40,6 @@ import { Expense } from '../../models/models';
 export class EditExpensePhaseOneComponent implements OnInit {
   @Input() exp: Expense;
   @Output() continue = new EventEmitter<any>();
-  datepickerOptions: DatepickerOptions = {
-    minYear: 1970,
-    maxYear: new Date().getFullYear()+1,
-    displayFormat: 'YYYY/MM/DD',
-    barTitleFormat: 'MMMM YYYY',
-    firstCalendarDay: 0,
-  };
   firstForm: FormGroup;
   categories: string[] = [];
   state = PhaseState.Visible;

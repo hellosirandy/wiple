@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, PopoverController } from 'ionic-angular';
-import { CoupleProvider, UserProvider } from '../../providers/providers';
-import { Couple } from '../../models/models';
+import { CoupleProvider, UserProvider, ExpenseProvider } from '../../providers/providers';
+import { Couple, Expense } from '../../models/models';
 import { ProfilePopoverPage } from '../profile-popover/profile-popover';
 import { EditExpensePage } from '../edit-expense/edit-expense';
+import { TimeInterval } from '../../enums/enums';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-main-app',
@@ -12,9 +14,14 @@ import { EditExpensePage } from '../edit-expense/edit-expense';
 export class MainAppPage {
   mobile: boolean=false;
   cp: Couple;
+  coupleKey: string;
+  dateTime = Date.now();
+  timeInterval = TimeInterval.Month;
+  expenses: Observable<Expense[]>;
 
   constructor(
     public couple: CoupleProvider,
+    public expense: ExpenseProvider,
     public navCtrl: NavController, 
     public navParams: NavParams,
     plt: Platform,
@@ -29,7 +36,17 @@ export class MainAppPage {
       obs.subscribe(couple => {
         this.cp = couple;
       });
-    })
+    });
+    this.couple.getCoupleKey().then(coupleKey => {
+      this.coupleKey = coupleKey;
+      this.changeTimeInterval({ dateTime: this.dateTime, timeInterval: this.timeInterval });
+    });
+  }
+
+  changeTimeInterval(event) {
+    this.dateTime = event.dateTime;
+    this.timeInterval = event.timeInterval;
+    this.expenses = this.expense.getExpense(this.coupleKey, this.timeInterval, this.dateTime);
   }
 
   handleProfileClick(event) {

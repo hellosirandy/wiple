@@ -9,6 +9,8 @@ import { ConnectPage } from './connect/connect';
 import { ProfilePopoverPage } from './profile-popover/profile-popover';
 import { EditExpensePage } from './edit-expense/edit-expense';
 import { ComponentsModule } from '../components/components.module';
+import { NgDatepickerModule } from 'ng2-datepicker';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
 	declarations: [
@@ -30,7 +32,9 @@ import { ComponentsModule } from '../components/components.module';
 		IonicPageModule.forChild(SignupPage),
 		IonicPageModule.forChild(ProfilePopoverPage),
 		IonicPageModule.forChild(EditExpensePage),
-		ComponentsModule
+		ComponentsModule,
+		NgDatepickerModule,
+		PipesModule
 	],
 	exports: [
 		CheckPage,

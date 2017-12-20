@@ -28,6 +28,34 @@
 </ion-header>
 
 
-<ion-content padding>
-  
+<ion-content>
+  <div [ngSwitch]="mobile">
+    <ion-row *ngSwitchCase="false" justify-content-around class="pc-content">
+      <ion-col col-3>
+
+      </ion-col>
+      <ion-col col-5>
+        <h3 class="title">Expense</h3>
+        <pc-datetime 
+          [dateTime]="dateTime"
+          [timeInterval]="timeInterval"
+          (changeTimeInterval)="changeTimeInterval($event)">
+        </pc-datetime>
+        <h3 class="total">Total: $ {{expenses | async | totalExpense:'integrate'}}</h3>
+        <integrate-stats
+          [expenses]="expenses | async">
+        </integrate-stats>
+      </ion-col>
+      <ion-col col-3>
+      
+      </ion-col>
+    </ion-row>
+    <div *ngSwitchCase="true" class="mobile-content">
+      <mobile-datetime
+        [dateTime]="dateTime" 
+        [timeInterval]="timeInterval" 
+        (changeTimeInterval)="changeTimeInterval($event)">
+      </mobile-datetime>
+    </div>
+  </div>
 </ion-content>

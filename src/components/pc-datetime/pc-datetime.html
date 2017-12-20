@@ -1,0 +1,8 @@
+<ng-datepicker [(ngModel)]="dateTime" [options]="timeInterval | datePickerOption" (ngModelChange)="changeDateTime()"></ng-datepicker>
+<div class="segment">
+  <div class="buttons">
+    <button (click)="changeType('year')" [ngClass]="{'selected': timeInterval === 'year'}">Year</button>
+    <button (click)="changeType('month')" [ngClass]="{'selected': timeInterval === 'month'}">Month</button>
+    <button (click)="changeType('day')" [ngClass]="{'selected': timeInterval === 'day'}">Day</button>
+  </div>
+</div>

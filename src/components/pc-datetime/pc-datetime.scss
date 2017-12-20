@@ -1,0 +1,38 @@
+pc-datetime {
+  input[_ngcontent-c0] {
+    display: block;
+    margin: 0 auto 20px;
+    text-align: center;
+    border: none !important;
+  }
+  div.ngx-datepicker-calendar-container {
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+  div.segment {
+    width: 100%;
+    border-top: solid 1px #c4c4c4;
+    border-bottom: solid 1px #c4c4c4;
+    div.buttons {
+      width: 70%;
+      margin: auto;
+      display: flex;
+      button {
+        color: map-get($colors, gray-text);
+        background-color: white;
+        padding: 0;
+        width: 34%;
+        height: 30px;
+        font-size: 1.5rem;
+        transition: background-color 0.2s ease;
+        border-radius: 0;
+        &.selected {
+          background-color: map-get($colors, button-select);
+        }
+        &:hover {
+          background-color: map-get($colors, button-hover);
+        }
+      }
+    }
+  }
+}

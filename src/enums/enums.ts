@@ -26,8 +26,15 @@ enum PhaseState {
   Back = 'back'
 }
 
+enum TimeInterval {
+  Year = 'year',
+  Month = 'month',
+  Day = 'day'
+}
+
 export {
   ExpenseCategory,
   PayType,
-  PhaseState
+  PhaseState,
+  TimeInterval
 }

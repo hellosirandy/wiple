@@ -1,6 +1,6 @@
 <div class="edit-expense-phase-one" [@phaseState] = "state">
   <form [formGroup]="firstForm" (ngSubmit)="onSubmit()">
-    <ng-datepicker formControlName="date" [options]="datepickerOptions"></ng-datepicker>
+    <ng-datepicker formControlName="date" [options]="'day' | datePickerOption"></ng-datepicker>
     <category-icon *ngFor="let category of categories"
       [button]="true" [category]="category"
       [selected]="firstForm.get('category').value === category"
