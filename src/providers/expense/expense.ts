@@ -1,17 +1,22 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
 
-/*
-  Generated class for the ExpenseProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class ExpenseProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello ExpenseProvider Provider');
+  constructor(
+    private afDatabase: AngularFireDatabase
+  ) {
+  }
+
+  saveExpense(coupleKey, expense) {
+    if (expense.key) {
+      const expenseKey = expense.key;
+      delete expense.key;
+      return this.afDatabase.object(`/expenses/${coupleKey}/${expenseKey}`).set(expense);
+    } else {
+      return this.afDatabase.list(`/expenses/${coupleKey}`).push(expense);
+    }
   }
 
 }

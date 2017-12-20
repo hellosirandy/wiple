@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { LoadingController, NavController, NavParams, Platform } from 'ionic-angular';
 import { Couple, Expense, User } from '../../models/models';
 import { ExpenseCategory, PayType } from '../../enums/enums';
-import { CoupleProvider, UserProvider } from '../../providers/providers';
+import { CoupleProvider, ExpenseProvider, UserProvider } from '../../providers/providers';
 
 @Component({
   selector: 'page-edit-expense',
@@ -14,9 +14,12 @@ export class EditExpensePage {
   phase = 1;
   firstUser: User;
   secondUser: User;
+  coupleKey: string;
 
   constructor(
     private couple: CoupleProvider,
+    private expense: ExpenseProvider,
+    private loadingCtrl: LoadingController,
     public navCtrl: NavController, 
     public navParams: NavParams,
     plt: Platform,
@@ -27,6 +30,9 @@ export class EditExpensePage {
   }
 
   ionViewDidLoad() {
+    this.couple.getCoupleKey().then(coupleKey => {
+      this.coupleKey = coupleKey
+    });
     this.couple.getCouple().then(obs => {
       obs.subscribe((cp: Couple) => {
         this.user.searchUserByKey(cp.first).take(1).subscribe(user => {
@@ -72,8 +78,15 @@ export class EditExpensePage {
 
   saveExpense(event) {
     Object.assign(this.exp, event);
-    console.log(this.exp);
-    
+    const loading = this.loadingCtrl.create({
+      spinner: 'bubbles',
+      content: 'Saving expense...'
+    });
+    loading.present();
+    (<any>this.expense.saveExpense(this.coupleKey, this.exp)).then(_ => {
+      loading.dismiss();
+      this.navCtrl.pop();
+    });
   }
 
 }
