@@ -1,4 +1,4 @@
-<div class="expense-item" [@expenseState]>
+<div class="expense-item" [@expenseState] (click)="handleExpenseClick()">
   <div class="category-name">
     <category-icon [button]="false" [selected]="false" [category]="exp.category">
     </category-icon>

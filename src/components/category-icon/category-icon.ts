@@ -1,11 +1,11 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Platform } from 'ionic-angular';
 
 @Component({
   selector: 'category-icon',
   templateUrl: 'category-icon.html'
 })
-export class CategoryIconComponent implements OnChanges, OnInit {
+export class CategoryIconComponent implements OnChanges {
   @Input() button = false;
   @Input() selected = false;
   @Input() category: string;
@@ -20,12 +20,13 @@ export class CategoryIconComponent implements OnChanges, OnInit {
     this.mobile = plt.is('mobile');
   }
 
-  ngOnInit() {
-    this.imgSrc = `/assets/imgs/expense-category/${this.category}.svg`;
-  }
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.selected && changes.selected.currentValue !== changes.selected.previousValue) {
+    if ((changes.selected && changes.selected.currentValue !== changes.selected.previousValue)
+      || (changes.category && changes.category.currentValue !== changes.category.previousValue)) {
       this.classes = this.getClass();
+      if (changes.category) {
+        this.imgSrc = `/assets/imgs/expense-category/${changes.category.currentValue}.svg`;
+      }
     }
   }
 

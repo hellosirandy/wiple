@@ -1,4 +1,3 @@
-<!-- Generated template for the UserStatsComponent component -->
-<div>
-  {{text}}
+<div class="user-stats" #parentDiv>
+  <chart [options]="pie|barChartOption:parentDiv" type="chart"></chart>
 </div>

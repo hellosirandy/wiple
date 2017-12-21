@@ -11,6 +11,7 @@ import { EditExpensePage } from './edit-expense/edit-expense';
 import { ComponentsModule } from '../components/components.module';
 import { NgDatepickerModule } from 'ng2-datepicker';
 import { PipesModule } from '../pipes/pipes.module';
+import { DisplayExpensePage } from './display-expense/display-expense';
 
 @NgModule({
 	declarations: [
@@ -21,7 +22,8 @@ import { PipesModule } from '../pipes/pipes.module';
 		ConnectPage,
 		SignupPage,
 		ProfilePopoverPage,
-		EditExpensePage
+		EditExpensePage, 
+		DisplayExpensePage
 	],
 	imports: [
 		IonicPageModule.forChild(CheckPage),
@@ -32,6 +34,7 @@ import { PipesModule } from '../pipes/pipes.module';
 		IonicPageModule.forChild(SignupPage),
 		IonicPageModule.forChild(ProfilePopoverPage),
 		IonicPageModule.forChild(EditExpensePage),
+		IonicPageModule.forChild(DisplayExpensePage),
 		ComponentsModule,
 		NgDatepickerModule,
 		PipesModule
@@ -44,7 +47,8 @@ import { PipesModule } from '../pipes/pipes.module';
 		ConnectPage,
 		SignupPage,
 		ProfilePopoverPage,
-		EditExpensePage
+		EditExpensePage,
+		DisplayExpensePage
 	],
 	providers: [
 		

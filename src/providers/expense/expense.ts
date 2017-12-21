@@ -27,7 +27,7 @@ export class ExpenseProvider {
       const start = moment(selectedTime).startOf(timeInterval).valueOf();
       const end = moment(selectedTime).endOf(timeInterval).valueOf();
       return this.afDatabase.list(`/expenses/${coupleKey}`, 
-        ref => ref.orderByChild('date').startAt(start).endAt(end))
+        ref => ref.orderByChild('dateTime').startAt(start).endAt(end))
         .snapshotChanges().map(changes => {
           return changes.map(c => ({ key: c.payload.key, ...c.payload.val() })).filter((e: Expense) => e.payType !== PayType.Wiple);
         }
@@ -44,7 +44,6 @@ export class ExpenseProvider {
           pile[exp.category].expenses.push(exp);
         } else {
           pile[exp.category] = <Particle> { category: exp.category, total: amount, expenses: [exp] }
-          // pile[exp.category] = new Particle(exp.category, amount, [exp]);
         }
       }
     }
@@ -55,7 +54,6 @@ export class ExpenseProvider {
 
   generatePie(pile: Particle[]) {
     return pile.map(p => <Piece> { name: p.category, y: p.total, color: ExpenseCategoryColors[p.category] });
-    // return pile.map(p => new Piece(p.category, p.total, ExpenseCategoryColos[p.category]));
   }
 
   getAmount(expense: Expense, position: 'first' | 'second' | null = null) {

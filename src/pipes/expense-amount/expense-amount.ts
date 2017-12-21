@@ -9,6 +9,10 @@ export class ExpenseAmountPipe implements PipeTransform {
    * Takes a value and makes it lowercase.
    */
   transform(value: Expense, ...args) {
-    return value.firstExpense + value.secondExpense;
+    if (value) {
+      return value.firstExpense + value.secondExpense;
+    } else {
+      return 0;
+    }
   }
 }

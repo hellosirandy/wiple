@@ -15,10 +15,11 @@ export class PieChartOptionPipe implements PipeTransform {
         plotShadow: false,
         type: 'pie',
         width: width,
+        height: width,
         style: {
           margin: 'auto',
           maxWidth: '400px',
-          height: 'auto'
+          maxHeight: '400px'
         }
       },
       title: {

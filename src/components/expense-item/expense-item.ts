@@ -3,6 +3,7 @@ import { Component, Input,
 import { ModalController, Platform } from 'ionic-angular';
 import { Expense } from '../../models/models';
 import { PhaseState } from '../../enums/enums';
+import { DisplayExpensePage } from '../../pages/display-expense/display-expense';
 
 @Component({
   selector: 'expense-item',
@@ -22,18 +23,18 @@ import { PhaseState } from '../../enums/enums';
   ]
 })
 export class ExpenseItemComponent {
-  @Input('expense') exp: Expense;
+  @Input('expense') exp;
   mobile: boolean = false;
 
   constructor(
+    private modalCtrl: ModalController,
     plt: Platform
   ) {
     this.mobile = plt.is('mobile');
   }
 
-  // handleExpenseClick() {
-  //   const modal = this.modalCtrl.create(DisplayExpensePage, { expense: this.exp });
-  //   modal.present();
-  // }
-
+  handleExpenseClick() {
+    const modal = this.modalCtrl.create(DisplayExpensePage, { expense: this.exp });
+    modal.present();
+  }
 }
