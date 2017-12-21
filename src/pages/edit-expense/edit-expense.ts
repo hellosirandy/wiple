@@ -3,6 +3,7 @@ import { LoadingController, NavController, NavParams, Platform } from 'ionic-ang
 import { Couple, Expense, User } from '../../models/models';
 import { ExpenseCategory, PayType } from '../../enums/enums';
 import { CoupleProvider, ExpenseProvider, UserProvider } from '../../providers/providers';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-edit-expense',
@@ -12,8 +13,8 @@ export class EditExpensePage {
   mobile: boolean = false;
   exp: Expense;
   phase = 1;
-  firstUser: User;
-  secondUser: User;
+  firstUser: Observable<User>;
+  secondUser: Observable<User>;
   coupleKey: string;
 
   constructor(
@@ -30,19 +31,14 @@ export class EditExpensePage {
   }
 
   ionViewDidLoad() {
-    this.couple.getCoupleKey().then(coupleKey => {
-      this.coupleKey = coupleKey
-    });
-    this.couple.getCouple().then(obs => {
-      obs.subscribe((cp: Couple) => {
-        this.user.searchUserByKey(cp.first).take(1).subscribe(user => {
-          this.firstUser = user;
-        });
-        this.user.searchUserByKey(cp.second).take(1).subscribe(user => {
-          this.secondUser = user;
-        });
-      });
-    });
+    this.getData();
+  }
+
+  async getData() {
+    this.coupleKey = await this.couple.getCoupleKey();
+    const couple: Couple = await this.couple.getCouple();
+    this.firstUser = this.user.getUser(couple.first);
+    this.secondUser = this.user.getUser(couple.second);
   }
 
   initExpense() {

@@ -6,15 +6,15 @@ import { User } from '../../models/models';
 })
 export class ProfilePicPipe implements PipeTransform {
   
-  transform(value: User, args?) {
+  transform(value: User, size) {
     if (value) {
       if (value.photoURL) {
-        if (args.size === 'large') {
+        if (size === 'large') {
           if (value.providerData && value.providerData.providerId === 'facebook.com') {
             return `https://graph.facebook.com/${value.providerData.uid}/picture?type=large`;
           }
-        } else if (typeof args.size === 'number') {
-          return `https://graph.facebook.com/${value.providerData.uid}/picture?width=${args.size}`;
+        } else if (typeof size === 'number') {
+          return `https://graph.facebook.com/${value.providerData.uid}/picture?width=${size}`;
         }
         return value.photoURL;
       } else if (value.gender && value.gender === 'female') {

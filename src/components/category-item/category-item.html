@@ -1,0 +1,8 @@
+<div class="category-item" [@categoryState]>
+  <div class="category-name">
+    <category-icon [button]="false" [selected]="false" [category]="category">
+    </category-icon>
+    <span class="description" [ngClass]="{'mobile': mobile}">{{category}}</span>
+  </div>
+  <span *ngIf="amount" class="amount" [ngClass]="{'mobile': mobile}">$ {{amount}}</span>
+</div>

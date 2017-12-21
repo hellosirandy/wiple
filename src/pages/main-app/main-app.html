@@ -31,8 +31,11 @@
 <ion-content>
   <div [ngSwitch]="mobile">
     <ion-row *ngSwitchCase="false" justify-content-around class="pc-content">
-      <ion-col col-3>
-
+      <ion-col col-3 class="user-column">
+        <div class="img-div">
+          <img [src]="firstUser|async|profilePic" alt="" class="photo">
+          <h3 class="display-name">{{(firstUser|async)?.displayName}}</h3>
+        </div>
       </ion-col>
       <ion-col col-5>
         <h3 class="title">Expense</h3>
@@ -42,12 +45,17 @@
           (changeTimeInterval)="changeTimeInterval($event)">
         </pc-datetime>
         <h3 class="total">Total: $ {{expenses | async | totalExpense:'integrate'}}</h3>
+        <hr>
         <integrate-stats
-          [expenses]="expenses | async">
+          [expenses]="expenses | async"
+          [timeInterval]="timeInterval">
         </integrate-stats>
       </ion-col>
-      <ion-col col-3>
-      
+      <ion-col col-3 class="user-column">
+        <div class="img-div">
+          <img [src]="secondUser|async|profilePic" alt="" class="photo">
+          <h3 class="display-name">{{(secondUser|async)?.displayName}}</h3>
+        </div>
       </ion-col>
     </ion-row>
     <div *ngSwitchCase="true" class="mobile-content">
@@ -56,6 +64,17 @@
         [timeInterval]="timeInterval" 
         (changeTimeInterval)="changeTimeInterval($event)">
       </mobile-datetime>
+      <mobile-switch-bar
+        [firstUser]="firstUser|async"
+        [secondUser]="secondUser|async"
+        [select]="mobileSelect"
+        (switchMobileSelect)="mobileSelect = $event"
+        [expenses]="expenses|async">
+      </mobile-switch-bar>
+      <integrate-stats *ngIf="mobileSelect==='integrate'"
+        [expenses]="expenses | async"
+        [timeInterval]="timeInterval">
+      </integrate-stats>
     </div>
   </div>
 </ion-content>

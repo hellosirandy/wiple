@@ -18,15 +18,15 @@
       </edit-expense-phase-one>
       <edit-expense-phase-two *ngIf="phase === 2"
         [exp]="exp"
-        [firstUser]="firstUser"
-        [secondUser]="secondUser"
+        [firstUser]="firstUser|async"
+        [secondUser]="secondUser|async"
         (continue)="continue($event)"
         (back)="back($event)">
       </edit-expense-phase-two>
       <edit-expense-phase-three *ngIf="phase === 3"
         [exp]="exp"
-        [firstUser]="firstUser"
-        [secondUser]="secondUser"
+        [firstUser]="firstUser|async"
+        [secondUser]="secondUser|async"
         (continue)="saveExpense($event)"
         (back)="back($event)">
       </edit-expense-phase-three>

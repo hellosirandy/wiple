@@ -20,9 +20,16 @@ export class CoupleProvider {
     return this.storage.get('coupleKey');
   }
 
-  async getCouple() {
-    const coupleKey = await this.storage.get('coupleKey');
-    return this.afDatabase.object<Couple>(`/couples/${coupleKey}`).valueChanges().take(1);
+  getCouple(): Promise<Couple> {
+    return new Promise((resolve, reject) => {
+      const coupleKey = this.storage.get('coupleKey').then(coupleKey => {
+        this.afDatabase.object<Couple>(`/couples/${coupleKey}`).valueChanges().take(1).subscribe(cp => {
+          resolve(cp);
+        });
+      });
+    });
+    // const coupleKey = await this.storage.get('coupleKey');
+    // return this.afDatabase.object<Couple>(`/couples/${coupleKey}`).valueChanges().take(1);
   }
 
 }

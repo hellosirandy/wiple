@@ -1,0 +1,11 @@
+<div class="mobile-switch-bar">
+  <div class="column profile-pic" [ngClass]="{'selected': select === 'first'}" (click)="switchMobileSelect('first')">
+    <img [src]="firstUser|profilePic" alt="" class="photo">
+  </div>
+  <div class="column total-amount" [ngClass]="{'selected': select === 'integrate'}" (click)="switchMobileSelect('integrate')">
+    <h3 class="expense" [ngStyle]="{'opacity': amountCaculated}">${{expenses|totalExpense:'integrate'}}</h3>
+  </div>
+  <div class="column profile-pic" [ngClass]="{'selected': select === 'second'}" (click)="switchMobileSelect('second')">
+    <img [src]="secondUser|profilePic" alt="" class="photo">
+  </div>
+</div>

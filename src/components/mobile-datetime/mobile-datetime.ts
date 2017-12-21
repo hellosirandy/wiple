@@ -14,10 +14,8 @@ export class MobileDatetimeComponent {
   }
 
   changeType(timeInterval) {
-    if (timeInterval !== this.timeInterval) {
-      const dateTime = this.dateTime;
-      this.changeTimeInterval.emit({ timeInterval, dateTime });
-    }
+    const dateTime = this.dateTime;
+    this.changeTimeInterval.emit({ timeInterval, dateTime });
   }
 
   changeDateTime() {

@@ -5,6 +5,7 @@ import * as firebase from 'firebase/app';
 import { Platform } from 'ionic-angular';
 import { Storage } from '@ionic/Storage';
 import { User } from '../../models/models';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserProvider {
@@ -107,6 +108,10 @@ export class UserProvider {
 
   async getCurrentUser() {
     const userKey = await this.storage.get('userKey');
+    return this.afDatabase.object<User>(`/users/${userKey}`).valueChanges();
+  }
+
+  getUser(userKey: string): Observable<User> {
     return this.afDatabase.object<User>(`/users/${userKey}`).valueChanges();
   }
 

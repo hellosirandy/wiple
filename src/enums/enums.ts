@@ -32,8 +32,29 @@ enum TimeInterval {
   Day = 'day'
 }
 
+enum ExpenseCategoryColors {
+  else = '#ce7ab0',
+  love = '#cc4475',
+  life = '#f0785a',
+  transit = '#f0c419',
+  entertainment = '#71c285',
+  shopping = '#519677',
+  food = '#657396',
+  coffee = '#6c7bbc',
+  rent = '#825699',
+  gift = '#995858'
+}
+
+enum MobileStatsDisplay {
+  Integrate = 'integrate',
+  First = 'first',
+  Second = 'second'
+}
+
 export {
   ExpenseCategory,
+  ExpenseCategoryColors,
+  MobileStatsDisplay,
   PayType,
   PhaseState,
   TimeInterval

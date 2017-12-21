@@ -11,6 +11,11 @@ import { PcDatetimeComponent } from './pc-datetime/pc-datetime';
 import { MobileDatetimeComponent } from './mobile-datetime/mobile-datetime';
 import { IntegrateStatsComponent } from './integrate-stats/integrate-stats';
 import { ExpenseItemComponent } from './expense-item/expense-item';
+import { ChartModule } from 'angular2-highcharts';
+import { CategoryItemComponent } from './category-item/category-item';
+import { UserStatsComponent } from './user-stats/user-stats';
+import { MobileSwitchBarComponent } from './mobile-switch-bar/mobile-switch-bar';
+
 @NgModule({
 	declarations: [EditExpensePhaseOneComponent,
     CategoryIconComponent,
@@ -19,12 +24,16 @@ import { ExpenseItemComponent } from './expense-item/expense-item';
     PcDatetimeComponent,
     MobileDatetimeComponent,
     IntegrateStatsComponent,
-    ExpenseItemComponent],
+    ExpenseItemComponent,
+    CategoryItemComponent,
+    UserStatsComponent,
+    MobileSwitchBarComponent],
 	imports: [
     IonicModule,
 		NgDatepickerModule,
     ReactiveFormsModule,
-    PipesModule
+    PipesModule,
+    ChartModule
 	],
 	exports: [EditExpensePhaseOneComponent,
     CategoryIconComponent,
@@ -33,6 +42,9 @@ import { ExpenseItemComponent } from './expense-item/expense-item';
     PcDatetimeComponent,
     MobileDatetimeComponent,
     IntegrateStatsComponent,
-    ExpenseItemComponent]
+    ExpenseItemComponent,
+    CategoryItemComponent,
+    UserStatsComponent,
+    MobileSwitchBarComponent]
 })
 export class ComponentsModule {}

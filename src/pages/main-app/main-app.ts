@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, PopoverController } from 'ionic-angular';
 import { CoupleProvider, UserProvider, ExpenseProvider } from '../../providers/providers';
-import { Couple, Expense } from '../../models/models';
+import { Couple, Expense, User } from '../../models/models';
 import { ProfilePopoverPage } from '../profile-popover/profile-popover';
 import { EditExpensePage } from '../edit-expense/edit-expense';
-import { TimeInterval } from '../../enums/enums';
+import { TimeInterval, MobileStatsDisplay } from '../../enums/enums';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -18,6 +18,9 @@ export class MainAppPage {
   dateTime = Date.now();
   timeInterval = TimeInterval.Month;
   expenses: Observable<Expense[]>;
+  firstUser: Observable<User>;
+  secondUser: Observable<User>;
+  mobileSelect = MobileStatsDisplay.Integrate;
 
   constructor(
     public couple: CoupleProvider,
@@ -32,15 +35,15 @@ export class MainAppPage {
   }
 
   ionViewDidLoad() {
-    this.couple.getCouple().then(obs => {
-      obs.subscribe(couple => {
-        this.cp = couple;
-      });
-    });
-    this.couple.getCoupleKey().then(coupleKey => {
-      this.coupleKey = coupleKey;
-      this.changeTimeInterval({ dateTime: this.dateTime, timeInterval: this.timeInterval });
-    });
+    this.getData();
+  }
+
+  async getData() {
+    this.cp = await this.couple.getCouple();
+    this.firstUser = this.user.getUser(this.cp.first);
+    this.secondUser = this.user.getUser(this.cp.second);
+    this.coupleKey = await this.couple.getCoupleKey();
+    this.changeTimeInterval({ dateTime: this.dateTime, timeInterval: this.timeInterval });
   }
 
   changeTimeInterval(event) {

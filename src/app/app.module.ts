@@ -10,6 +10,9 @@ import { PagesModule } from '../pages/pages.module';
 
 import { NgDatepickerModule } from 'ng2-datepicker';
 
+import { ChartModule } from 'angular2-highcharts';
+import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
+
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -22,6 +25,15 @@ import { ComponentsModule } from '../components/components.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PipesModule } from '../pipes/pipes.module';
 import { ExpenseProvider } from '../providers/expense/expense';
+
+declare var require: any
+export function highchartsFactory() {
+  const hc = require('highcharts');
+  const dd = require('highcharts/modules/drilldown');
+  dd(hc);
+
+  return hc;
+}
 
 @NgModule({
   declarations: [
@@ -38,7 +50,8 @@ import { ExpenseProvider } from '../providers/expense/expense';
     NgDatepickerModule,
     ComponentsModule,
     BrowserAnimationsModule,
-    PipesModule
+    PipesModule,
+    ChartModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -51,7 +64,11 @@ import { ExpenseProvider } from '../providers/expense/expense';
     UserProvider,
     ConnectionProvider,
     CoupleProvider,
-    ExpenseProvider
+    ExpenseProvider,
+    {
+      provide: HighchartsStatic,
+      useFactory: highchartsFactory
+    },
   ]
 })
 export class AppModule {}

@@ -1,4 +1,9 @@
-<!-- Generated template for the ExpenseItemComponent component -->
-<div>
-  {{text}}
+<div class="expense-item" [@expenseState]>
+  <div class="category-name">
+    <category-icon [button]="false" [selected]="false" [category]="exp.category">
+    </category-icon>
+    <span class="description" [ngClass]="{'mobile': mobile}">{{exp.description}}</span>
+  </div>
+  
+  <span class="amount" [ngClass]="{'mobile': mobile}">$ {{exp | expenseAmount}}</span>
 </div>

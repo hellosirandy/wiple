@@ -1,2 +1,14 @@
-<div class="integrate-stats">
+<div class="integrate-stats" #parentDiv>
+  <div *ngIf="timeInterval !== 'day'">
+    <chart [options]="pie|pieChartOption:parentDiv" type="chart"></chart>
+    <div *ngFor="let p of pile" [ngStyle]="{padding: mobile ? '0 6px' : '0px'}">
+      <category-item [category]="p.category" [amount]="p.total">
+      </category-item>
+    </div>
+  </div>
+  <div *ngIf="timeInterval === 'day'" [ngStyle]="{padding: mobile ? '0 6px' : '0px'}">
+    <expense-item *ngFor="let exp of expenses"
+      [expense]="exp">
+    </expense-item>
+  </div>
 </div>
