@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren,
+import { AfterViewChecked, Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren,
   animate, state, style, transition, trigger } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Expense, User } from '../../models/models';
@@ -36,7 +36,7 @@ import { PayType, PhaseState } from '../../enums/enums';
     ])
   ]
 })
-export class EditExpensePhaseThreeComponent implements AfterViewInit, OnInit {
+export class EditExpensePhaseThreeComponent implements AfterViewChecked, OnInit {
   @ViewChildren('whoFirstSection') sections: QueryList<ElementRef>;
   @ViewChild('customInput') customInput: ElementRef;
   @Input() firstUser: User;
@@ -88,10 +88,9 @@ export class EditExpensePhaseThreeComponent implements AfterViewInit, OnInit {
     })
   }
 
-  ngAfterViewInit() {
+  ngAfterViewChecked() {
     setTimeout(() => {
       this.whoFirstHeight = this.sections.first.nativeElement.scrollHeight;
-      this.whoFirst = this.sections.first.nativeElement;
       this.customInputHeight = this.customInput.nativeElement.scrollHeight;
     }, 0);
   }

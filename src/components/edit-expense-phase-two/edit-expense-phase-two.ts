@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild,
+import { AfterViewChecked, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild,
   animate, state, style, transition, trigger } from '@angular/core';
 import { PhaseState } from '../../enums/enums';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -36,7 +36,7 @@ import { User, Expense } from '../../models/models';
     ])
   ]
 })
-export class EditExpensePhaseTwoComponent implements OnInit {
+export class EditExpensePhaseTwoComponent implements AfterViewChecked, OnInit {
   @ViewChild('same') sameDiv: ElementRef;
   @ViewChild('diff') diffDiv: ElementRef;
   @Input() firstUser: User;
@@ -48,6 +48,8 @@ export class EditExpensePhaseTwoComponent implements OnInit {
   secondForm: FormGroup;
   submitTried = false;
   amountType = '';
+  sameDivHeight = 0;
+  diffDivHeight = 0;
 
   constructor() {
     
@@ -71,6 +73,13 @@ export class EditExpensePhaseTwoComponent implements OnInit {
         'secondAmount': new FormControl(total > 0 ? this.exp.secondExpense : null, Validators.required)
       })
     });
+  }
+
+  ngAfterViewChecked() {
+    setTimeout(() => {
+      this.sameDivHeight = this.sameDiv.nativeElement.scrollHeight;
+      this.diffDivHeight = this.diffDiv.nativeElement.scrollHeight;
+    }, 0);
   }
   
   onSubmit() {

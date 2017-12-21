@@ -3,7 +3,7 @@
     <button class="round-btn" ion-button color="wiple-light-pink" full (click)="handleButtonClick('same')" type="button" full>
       Same Amount Each
     </button>
-    <div #same class="collapse" formGroupName="same" [ngStyle]="{'maxHeight': (amountType==='same' ? (same|maxHeight) : 0) + 'px'}">
+    <div #same class="collapse" formGroupName="same" [ngStyle]="{'maxHeight': (amountType==='same' ? sameDivHeight : 0) + 'px'}">
       <ion-input placeholder="Total amount" formControlName="amount" type="number"
         [ngClass]="{'error': secondForm.get('same.amount').invalid && submitTried}"></ion-input>
     </div>
@@ -11,7 +11,7 @@
       Different Amount
     </button>
     <div class="collapse" formGroupName="diff" #diff 
-      [ngStyle]="{'maxHeight': (amountType==='diff' ? (diff|maxHeight) : 0) + 'px'}">
+      [ngStyle]="{'maxHeight': (amountType==='diff' ? diffDivHeight : 0) + 'px'}">
       
       <ion-row>
         <ion-col col-3 class="profile-pic">
