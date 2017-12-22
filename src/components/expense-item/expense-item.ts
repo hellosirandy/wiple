@@ -1,7 +1,6 @@
 import { Component, Input,
   animate, state, style, transition, trigger } from '@angular/core';
 import { ModalController, Platform } from 'ionic-angular';
-import { Expense } from '../../models/models';
 import { PhaseState } from '../../enums/enums';
 import { DisplayExpensePage } from '../../pages/display-expense/display-expense';
 

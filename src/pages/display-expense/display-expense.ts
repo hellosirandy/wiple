@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Platform, NavController, NavParams, ViewController } from 'ionic-angular';
-import { Couple, User, Expense } from '../../models/models';
-import { CoupleProvider, ExpenseProvider, UserProvider } from '../../providers/providers';
+import { Couple, User } from '../../models/models';
+import { CoupleProvider, UserProvider } from '../../providers/providers';
 import { Observable } from 'rxjs/Observable';
 import { EditExpensePage } from '../edit-expense/edit-expense';
 
@@ -19,7 +19,6 @@ export class DisplayExpensePage {
 
   constructor(
     private couple: CoupleProvider,
-    private expense: ExpenseProvider,
     private navCtrl: NavController,
     private navParams: NavParams,
     plt: Platform,

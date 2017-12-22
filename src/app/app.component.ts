@@ -3,7 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CheckPage } from '../pages/check/check';
-import { CoupleProvider } from '../providers/providers';
+import { CoupleProvider, UserProvider } from '../providers/providers';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,7 +16,8 @@ export class MyApp {
     couple: CoupleProvider,
     platform: Platform, 
     statusBar: StatusBar, 
-    splashScreen: SplashScreen
+    splashScreen: SplashScreen,
+    private user: UserProvider,
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -27,6 +28,10 @@ export class MyApp {
     couple.getCoupleKey().then(coupleKey => {
       this.coupleKey = coupleKey;
     });
+  }
+
+  handleSignoutClick() {
+    this.user.signOut();
   }
 }
 

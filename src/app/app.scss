@@ -90,6 +90,9 @@ span.form-errors {
 }
 
 ion-content.signinup {
+  div.scroll-content {
+    padding-bottom: 200px !important;
+  }
   ion-row {
     div.error-div {
       padding: 20px;
