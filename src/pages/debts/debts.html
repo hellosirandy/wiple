@@ -18,7 +18,7 @@
     <div class="table-body" [style.paddingBottom]="ios ? '0px' : footerHeight + 'px'">
       <ion-row *ngFor="let exp of expenses|async|extractExpense" (click)="handleExpenseClick(exp)">
         <ion-col col-4>{{exp.dateTime|formatTime:'YYYY/MM/DD'}}</ion-col>
-        <ion-col col-4 [ngClass]="{'wiple': exp.isWiple}">{{exp.description}}</ion-col>
+        <ion-col col-4 [ngClass]="{'wiple': exp.payType==='wiple'}">{{exp.description}}</ion-col>
         <ion-col col-4 *ngIf="(exp|debt:potision) as amount" 
           [ngClass]="{'negative': amount < 0, 'positive': amount > 0}">
           {{amount}}

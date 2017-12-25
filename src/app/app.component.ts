@@ -1,19 +1,21 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CheckPage } from '../pages/check/check';
 import { CoupleProvider, UserProvider } from '../providers/providers';
+import { DebtsPage } from '../pages/debts/debts';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild(Nav) nav: Nav;
   rootPage:any = CheckPage;
   coupleKey: string;
 
   constructor(
-    couple: CoupleProvider,
+    private couple: CoupleProvider,
     platform: Platform, 
     statusBar: StatusBar, 
     splashScreen: SplashScreen,
@@ -25,13 +27,19 @@ export class MyApp {
       // statusBar.styleDefault();
       // splashScreen.hide();
     });
-    couple.getCoupleKey().then(coupleKey => {
-      this.coupleKey = coupleKey;
-    });
+    this.getData();
+  }
+
+  async getData() {
+    this.coupleKey = await this.couple.getCoupleKey();
   }
 
   handleSignoutClick() {
     this.user.signOut();
+  }
+
+  handleDebtsClick() {
+    this.nav.push(DebtsPage, { coupleKey: this.coupleKey });
   }
 }
 

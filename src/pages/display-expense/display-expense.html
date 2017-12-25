@@ -23,7 +23,7 @@
 <ion-content padding>
   
   <h3 class="title">{{exp.description}}</h3>
-  <h4 class="subtitle" *ngIf="whoTreat || wiplePay">{{whoTreat || wiplePay}}</h4>
+  <h4 class="subtitle" *ngIf="exp|specialExpense:(firstUser|async):(secondUser|async) as specialText">{{specialText}}</h4>
   <p class="date">{{exp.dateTime|formatTime:'YYYY/MM/DD'}}</p>
   <category-item [category]="exp.category">
   </category-item>

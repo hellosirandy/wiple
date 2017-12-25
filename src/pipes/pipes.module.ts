@@ -9,6 +9,7 @@ import { FormatTimePipe } from './format-time/format-time';
 import { DebtPipe } from './debt/debt';
 import { ExtractExpensePipe } from './extract-expense/extract-expense';
 import { TotalDebtsPipe } from './total-debts/total-debts';
+import { SpecialExpensePipe } from './special-expense/special-expense';
 @NgModule({
 	declarations: [
     ProfilePicPipe,
@@ -20,7 +21,8 @@ import { TotalDebtsPipe } from './total-debts/total-debts';
     FormatTimePipe,
     DebtPipe,
     ExtractExpensePipe,
-    TotalDebtsPipe],
+    TotalDebtsPipe,
+    SpecialExpensePipe],
 	imports: [],
 	exports: [
     ProfilePicPipe,
@@ -32,6 +34,7 @@ import { TotalDebtsPipe } from './total-debts/total-debts';
     FormatTimePipe,
     DebtPipe,
     ExtractExpensePipe,
-    TotalDebtsPipe]
+    TotalDebtsPipe,
+    SpecialExpensePipe]
 })
 export class PipesModule {}

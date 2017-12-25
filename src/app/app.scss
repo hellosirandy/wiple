@@ -151,3 +151,8 @@ input.ngx-datepicker-input {
 .ngx-datepicker-calendar-container {
   z-index: 100;
 }
+
+.scroll-content {
+  // overflow: scroll;
+  -webkit-overflow-scrolling: auto;
+}

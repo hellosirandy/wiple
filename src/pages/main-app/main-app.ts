@@ -17,7 +17,7 @@ export class MainAppPage {
   cp: Couple;
   coupleKey: string;
   dateTime = Date.now();
-  timeInterval = TimeInterval.Day;
+  timeInterval = TimeInterval.Month;
   expenses: Observable<Expense[]>;
   firstUser: Observable<User>;
   secondUser: Observable<User>;

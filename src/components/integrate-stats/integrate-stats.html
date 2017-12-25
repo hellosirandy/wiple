@@ -1,9 +1,18 @@
 <div class="integrate-stats" #parentDiv>
   <div *ngIf="timeInterval !== 'day'">
     <chart [options]="pie|pieChartOption:parentDiv" type="chart"></chart>
-    <div *ngFor="let p of pile" [ngStyle]="{padding: mobile ? '0 6px' : '0px'}">
-      <category-item [category]="p.category" [amount]="p.total">
+    <div *ngFor="let p of pile; let i = index" [ngStyle]="{padding: mobile ? '0 6px' : '0px'}">
+      <category-item [category]="p.category" [amount]="p.total" (click)="handleCategoryClick(i)">
       </category-item>
+      <ion-list #expenseList
+        [ngStyle]="{'maxHeight': (selectedList===i ? expenseListHeights[i] : 0) + 'px'}">
+        <ion-item *ngFor="let exp of p.expenses" [ngClass]="{'mobile': mobile}" no-lines>
+          {{exp.description}}
+          <div class="item-end" item-end>
+            $ {{exp|expenseAmount}}
+          </div>
+        </ion-item>
+      </ion-list>
     </div>
   </div>
   <div *ngIf="timeInterval === 'day'" [ngStyle]="{padding: mobile ? '0 6px' : '0px'}">

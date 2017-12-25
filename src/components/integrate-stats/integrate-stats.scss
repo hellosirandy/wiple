@@ -1,3 +1,19 @@
 integrate-stats {
-
+  ion-list {
+    margin: 0 !important;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    ion-item {
+      padding-left: 60px !important;
+      &.mobile {
+        padding-left: 50px !important;
+      }
+      .item-inner {
+        padding-right: 0 !important;
+        div.item-end {
+          margin-right: 0;
+        }
+      }
+    }
+  }
 }

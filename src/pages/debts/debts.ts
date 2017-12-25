@@ -1,8 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { ModalController, NavParams, Platform } from 'ionic-angular';
+import { ModalController, NavController, NavParams, Platform } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { ExpenseProvider, CoupleProvider } from '../../providers/providers';
 import { DisplayExpensePage } from '../display-expense/display-expense';
+import { WiplePayPage } from '../wiple-pay/wiple-pay';
 
 @Component({
   selector: 'page-debts',
@@ -21,6 +22,7 @@ export class DebtsPage {
     private couple: CoupleProvider,
     private expense: ExpenseProvider,
     private modalCtrl: ModalController,
+    private navCtrl: NavController,
     navParams: NavParams,
     plt: Platform,
   ) {
@@ -46,10 +48,12 @@ export class DebtsPage {
   }
 
   handleExpenseClick(expense) {
-    console.log(expense);
-    
     const modal = this.modalCtrl.create(DisplayExpensePage, { expense: expense });
     modal.present();
   }
 
+  handleWipleClick() {
+    this.navCtrl.push(WiplePayPage, { coupleKey: this.coupleKey });
+    
+  }
 }
