@@ -6,6 +6,9 @@ import { PieChartOptionPipe } from './pie-chart-option/pie-chart-option';
 import { ExpenseAmountPipe } from './expense-amount/expense-amount';
 import { BarChartOptionPipe } from './bar-chart-option/bar-chart-option';
 import { FormatTimePipe } from './format-time/format-time';
+import { DebtPipe } from './debt/debt';
+import { ExtractExpensePipe } from './extract-expense/extract-expense';
+import { TotalDebtsPipe } from './total-debts/total-debts';
 @NgModule({
 	declarations: [
     ProfilePicPipe,
@@ -14,7 +17,10 @@ import { FormatTimePipe } from './format-time/format-time';
     PieChartOptionPipe,
     ExpenseAmountPipe,
     BarChartOptionPipe,
-    FormatTimePipe],
+    FormatTimePipe,
+    DebtPipe,
+    ExtractExpensePipe,
+    TotalDebtsPipe],
 	imports: [],
 	exports: [
     ProfilePicPipe,
@@ -23,6 +29,9 @@ import { FormatTimePipe } from './format-time/format-time';
     PieChartOptionPipe,
     ExpenseAmountPipe,
     BarChartOptionPipe,
-    FormatTimePipe]
+    FormatTimePipe,
+    DebtPipe,
+    ExtractExpensePipe,
+    TotalDebtsPipe]
 })
 export class PipesModule {}

@@ -56,6 +56,7 @@ export class EditExpensePhaseThreeComponent implements AfterViewChecked, OnInit 
   }
 
   ngOnInit() {
+    
     this.totalAmount = this.exp.firstExpense + this.exp.secondExpense;
     if (this.totalAmount !== this.exp.firstPaid + this.exp.secondPaid) {
       this.exp.firstPaid = this.exp.firstExpense;
@@ -118,8 +119,9 @@ export class EditExpensePhaseThreeComponent implements AfterViewChecked, OnInit 
         this.exp.secondPaid = this.totalAmount;
       }
     } else if (this.exp.payType === PayType.Custom) {
-      this.exp.firstPaid = Number(this.thirdForm.get('custom.first').value);
-      this.exp.secondPaid = Number(this.thirdForm.get('custom.second').value);
+      // this.exp.firstPaid = Number(this.thirdForm.get('custom.first').value);
+      // this.exp.secondPaid = Number(this.thirdForm.get('custom.second').value);
+      // this.exp.firstPaid = 
     }
   }
 
@@ -131,6 +133,8 @@ export class EditExpensePhaseThreeComponent implements AfterViewChecked, OnInit 
   }
 
   onSubmit() {
+    this.exp.firstPaid = Number(this.exp.firstPaid);
+    this.exp.secondPaid = Number(this.exp.secondPaid);
     this.continue.emit(this.exp);
   }
 

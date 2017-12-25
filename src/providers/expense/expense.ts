@@ -22,7 +22,7 @@ export class ExpenseProvider {
     }
   }
 
-  getExpense(coupleKey: string, timeInterval, selectedTime) {
+  getExpense(coupleKey: string, timeInterval?, selectedTime?) {
     if (timeInterval && selectedTime) {
       const start = moment(selectedTime).startOf(timeInterval).valueOf();
       const end = moment(selectedTime).endOf(timeInterval).valueOf();
@@ -32,6 +32,11 @@ export class ExpenseProvider {
           return changes.map(c => ({ key: c.payload.key, ...c.payload.val() })).filter((e: Expense) => e.payType !== PayType.Wiple);
         }
       );
+    } else {
+      return this.afDatabase.list(`/expenses/${coupleKey}`, ref => ref.orderByChild('dateTime'))
+        .snapshotChanges().map(changes => {
+        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+      });
     }
   }
   generateStats(expenses: Expense[], position: 'first' | 'second' | null = null) {

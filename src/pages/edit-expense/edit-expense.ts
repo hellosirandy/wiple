@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { LoadingController, NavController, NavParams, Platform } from 'ionic-angular';
 import { Couple, Expense, User } from '../../models/models';
 import { ExpenseCategory, PayType } from '../../enums/enums';
 import { CoupleProvider, ExpenseProvider, UserProvider } from '../../providers/providers';
 import { Observable } from 'rxjs/Observable';
+import { Inject } from "@angular/core";
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   selector: 'page-edit-expense',
   templateUrl: 'edit-expense.html',
 })
 export class EditExpensePage {
+  @ViewChild('content') content: ElementRef;
   mobile: boolean = false;
   exp: Expense;
   phase = 1;
@@ -19,6 +22,7 @@ export class EditExpensePage {
 
   constructor(
     private couple: CoupleProvider,
+    @Inject(DOCUMENT) private document: Document,
     private expense: ExpenseProvider,
     private loadingCtrl: LoadingController,
     public navCtrl: NavController, 
@@ -63,11 +67,16 @@ export class EditExpensePage {
   }
 
   continue(event) {
+    const mainDiv = document.getElementsByClassName('scroll-content');
+    mainDiv[mainDiv.length - 1].scrollTop = 0;
+    this.document.body.scrollTop = 0;
     Object.assign(this.exp, event);
     this.phase ++;
   }
 
   back(event) {
+    const mainDiv = document.getElementsByClassName('scroll-content');
+    mainDiv[mainDiv.length - 1].scrollTop = 0;
     Object.assign(this.exp, event);
     this.phase--;
   }

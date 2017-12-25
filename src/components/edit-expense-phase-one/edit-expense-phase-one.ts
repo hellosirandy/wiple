@@ -50,7 +50,7 @@ export class EditExpensePhaseOneComponent implements OnInit {
 
   ngOnInit() {
     this.firstForm = new FormGroup({
-      'date': new FormControl(this.exp.dateTime, Validators.required),
+      'dateTime': new FormControl(this.exp.dateTime, Validators.required),
       'category': new FormControl(this.exp.category, Validators.required),
       'description': new FormControl(this.exp.description, Validators.required)
     });

@@ -1,10 +1,12 @@
 edit-expense-phase-one {
-  h3.category {
-    font-size: 1.8rem;
-    text-transform: capitalize;
-    span {
+  div.edit-expense-phase-one {
+    h3.category {
+      font-size: 1.8rem;
       text-transform: capitalize;
+      span {
+        text-transform: capitalize;
+      }
     }
   }
-  padding-bottom: 500px;
+  
 }

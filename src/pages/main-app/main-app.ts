@@ -6,6 +6,7 @@ import { ProfilePopoverPage } from '../profile-popover/profile-popover';
 import { EditExpensePage } from '../edit-expense/edit-expense';
 import { TimeInterval, MobileStatsDisplay } from '../../enums/enums';
 import { Observable } from 'rxjs/Observable';
+import { DebtsPage } from '../debts/debts';
 
 @Component({
   selector: 'page-main-app',
@@ -61,6 +62,10 @@ export class MainAppPage {
 
   handleNewExpenseClick() {
     this.navCtrl.push(EditExpensePage);
+  }
+
+  handleDebtsClick() {
+    this.navCtrl.push(DebtsPage, {  coupleKey: this.coupleKey });
   }
 
 }
