@@ -1,10 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav } from 'ionic-angular';
+import { Content, Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CheckPage } from '../pages/check/check';
 import { CoupleProvider, UserProvider } from '../providers/providers';
 import { DebtsPage } from '../pages/debts/debts';
+import { LandingPage } from '../pages/landing/landing';
 
 @Component({
   templateUrl: 'app.html'
@@ -35,7 +36,9 @@ export class MyApp {
   }
 
   handleSignoutClick() {
-    this.user.signOut();
+    this.user.signOut().then(_ => {
+      this.nav.setRoot(LandingPage, {}, {animate: true});
+    });
   }
 
   handleDebtsClick() {

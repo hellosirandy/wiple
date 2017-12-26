@@ -27,7 +27,7 @@ export class DisplayExpensePage {
     private viewCtrl: ViewController
   ) {
     this.ios = plt.is('ios');
-    this.exp = this.navParams.get('expense');  
+    this.exp = this.navParams.get('expense');
   }
 
   ionViewDidLoad() {

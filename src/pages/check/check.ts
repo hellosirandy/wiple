@@ -41,8 +41,4 @@ export class CheckPage {
     }
   }
 
-  signOut() {
-    this.user.signOut();
-  }
-
 }

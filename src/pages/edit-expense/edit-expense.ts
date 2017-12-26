@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoadingController, NavController, NavParams, Platform } from 'ionic-angular';
 import { Couple, Expense, User } from '../../models/models';
 import { ExpenseCategory, PayType } from '../../enums/enums';
@@ -12,7 +12,6 @@ import { DOCUMENT } from '@angular/platform-browser';
   templateUrl: 'edit-expense.html',
 })
 export class EditExpensePage {
-  @ViewChild('content') content: ElementRef;
   mobile: boolean = false;
   exp: Expense;
   phase = 1;

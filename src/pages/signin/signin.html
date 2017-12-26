@@ -6,9 +6,45 @@
 
 </ion-header>
 
-<ion-content padding class="signinup" overflow-scroll="true">
-  <h3 class="page-title">Sign in</h3>
-  <ion-row>
+<ion-content padding class="signinup">
+  <div class="content">
+    <h3 class="page-title">Sign in</h3>
+    <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+      <div class="error-div" *ngIf="errorMessage">
+        <span class="error-message">
+          Incorrect email or password
+        </span>
+      </div>
+      <ion-list>
+        <ion-item no-lines formControlName="email">
+          <ion-label color="input-label" stacked>Email</ion-label>
+          <ion-input type="text" [ngClass]="{'error': signinForm.get('email').invalid && submitTried}"></ion-input>
+        </ion-item>
+        <ion-item no-lines formControlName="password">
+          <ion-label color="input-label" stacked>Password</ion-label>
+          <ion-input type="password" [ngClass]="{'error': signinForm.get('password').invalid && submitTried}"></ion-input>
+        </ion-item>
+      </ion-list>
+      <button class="round-btn" ion-button color="wiple-blue" full type="submit">
+        Signin
+      </button>
+      <div class="switch-sign-div">
+        Need an account?
+        <span (click)="goSignup()">Sign up</span>.
+      </div>
+      <div class="switch-or-div">
+        OR
+      </div>
+      <button class="round-btn" ion-button icon-start color="facebook" full (click)="signinWithFacebook()" type="button">
+        <ion-icon name="logo-facebook"></ion-icon>
+        Signin with facebook
+      </button>
+    </form>
+    
+  </div>
+  
+  
+  <!-- <ion-row>
     <ion-col col-12 offset-0 col-md-8 offset-md-2 col-lg-6 offset-lg-3>
       <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
         <div class="error-div" *ngIf="errorMessage">
@@ -21,13 +57,17 @@
           *ngIf="signinForm.get('email').invalid && submitTried">
           * Invalid email
         </span>
-        <ion-input id="email" formControlName="email" autofocus></ion-input>
+        <ion-item no-lines>
+          <ion-input id="email" formControlName="email" placeholder="Email"></ion-input>
+        </ion-item>
         <label for="password">Password</label>
         <span class="form-errors"
           *ngIf="signinForm.get('password').invalid && submitTried">
           * Invalid password
         </span>
-        <ion-input id="password" type="password" formControlName="password"></ion-input>
+        <ion-item no-lines>
+          <ion-input id="password" type="password" formControlName="password" placeholder="Password"></ion-input>
+        </ion-item>
         <button class="round-btn" ion-button color="wiple-blue" full type="submit">
           Signin
         </button>
@@ -44,5 +84,5 @@
         Signin with facebook
       </button>
     </ion-col>
-  </ion-row>
+  </ion-row> -->
 </ion-content>

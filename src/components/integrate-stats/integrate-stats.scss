@@ -4,6 +4,7 @@ integrate-stats {
     overflow: hidden;
     transition: max-height 0.3s ease;
     ion-item {
+      cursor: pointer;
       padding-left: 60px !important;
       &.mobile {
         padding-left: 50px !important;

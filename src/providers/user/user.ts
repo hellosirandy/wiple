@@ -27,7 +27,11 @@ export class UserProvider {
   }
 
   signOut() {
-    return this.afAuth.auth.signOut();
+    return this.afAuth.auth.signOut().then(_ => {
+      return this.storage.remove('userKey');
+    }).then(_ => {
+      return this.storage.remove('coupleKey');
+    });
   }
 
   signinWithFacebook() {

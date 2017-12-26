@@ -31,7 +31,7 @@ export class SignupPage implements OnInit {
       'password': new FormControl(null, Validators.required),
       'confirmPassword': new FormControl(null, [Validators.required, this.validatePassword.bind(this)]),
       'displayName': new FormControl(null, Validators.required),
-    })
+    });
   }
 
   onSubmit() {

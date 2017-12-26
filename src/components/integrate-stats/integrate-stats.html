@@ -6,7 +6,7 @@
       </category-item>
       <ion-list #expenseList
         [ngStyle]="{'maxHeight': (selectedList===i ? expenseListHeights[i] : 0) + 'px'}">
-        <ion-item *ngFor="let exp of p.expenses" [ngClass]="{'mobile': mobile}" no-lines>
+        <ion-item *ngFor="let exp of p.expenses" [ngClass]="{'mobile': mobile}" no-lines (click)="handleExpenseClick(exp)">
           {{exp.description}}
           <div class="item-end" item-end>
             $ {{exp|expenseAmount}}

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Content, NavController, NavParams } from 'ionic-angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserProvider } from '../../providers/providers';
 import { SignupPage } from '../signup/signup';
@@ -9,8 +9,10 @@ import { CheckPage } from '../check/check';
   templateUrl: 'signin.html',
 })
 export class SigninPage implements OnInit {
+  @ViewChild(Content) content;
   signinForm: FormGroup;
   submitTried: boolean = false;
+  contentHeight: number = 0;
 
   errorMessage: string;
 

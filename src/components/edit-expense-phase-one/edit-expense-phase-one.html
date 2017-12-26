@@ -12,7 +12,9 @@
     <span class="form-errors" *ngIf="firstForm.get('description').invalid && submitTried">
       * Description is required
     </span>
-    <ion-input placeholder="Description" formControlName="description"></ion-input>
+    <ion-item no-lines>
+      <ion-input placeholder="Description" formControlName="description"></ion-input>
+    </ion-item>
     <button class="round-btn" ion-button color="wiple-blue" full>
       Continue
     </button>

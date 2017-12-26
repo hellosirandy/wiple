@@ -41,7 +41,15 @@ export function highchartsFactory() {
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      platforms: {
+        ios: {
+          scrollAssist: false,
+          autoFocusAssist: 'instant',
+          // inputBlurring: false,
+        }
+      }
+    }),
     AngularFireModule.initializeApp(FirebaseConfig, 'wiple'),
     IonicStorageModule.forRoot(),
     AngularFireAuthModule,

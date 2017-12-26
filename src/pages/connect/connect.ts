@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, PopoverController } from 'ionic-angular';
+import { NavController, NavParams, Platform, PopoverController } from 'ionic-angular';
 import { ProfilePopoverPage } from '../profile-popover/profile-popover';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConnectionProvider, UserProvider } from '../../providers/providers';
@@ -22,6 +22,7 @@ export class ConnectPage implements OnInit {
   invitations: Invitation[]=[];
   sentInvSub;
   receivedInvSub;
+  mobile: boolean = false;
 
   currentInvitation: Invitation;
 
@@ -29,9 +30,11 @@ export class ConnectPage implements OnInit {
     public connection: ConnectionProvider,
     public navCtrl: NavController, 
     public navParams: NavParams,
+    plt: Platform,
     public popoverCtrl: PopoverController,
     public user: UserProvider
   ) {
+    this.mobile = plt.is('mobile');
   }
 
   ionViewDidLoad() {

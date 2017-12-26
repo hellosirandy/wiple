@@ -57,7 +57,6 @@ ion-content {
   }
   
 }
-
 input[type=text], input[type=password], input[type=number] {
   width: 100%;
   font-size: 1.6rem;
@@ -72,6 +71,12 @@ input[type=text], input[type=password], input[type=number] {
     color: #d8d7d7;
   }
 }
+ion-input.error {
+  input[type=text], input[type=password], input[type=number] {
+    border: 0.8px solid color($colors, danger);
+  }
+}
+
 
 label {
   color: #B1B1B1;
@@ -90,34 +95,38 @@ span.form-errors {
 }
 
 ion-content.signinup {
-  div.scroll-content {
-    padding-bottom: 200px !important;
+  ion-item {
+    padding: 0;
+    div.item-inner {
+      padding-right: 0 !important;
+      ion-label {
+        font-size: 1.8rem;
+      }
+    }
   }
-  ion-row {
-    div.error-div {
-      padding: 20px;
-      background-color: #ffdbdb;
-      border-radius: 18px;
-      margin-bottom: 16px;
-      span.error-message {
-        color: map-get($colors, danger);
-      }
+  div.error-div {
+    padding: 20px;
+    background-color: #ffdbdb;
+    border-radius: 18px;
+    margin-bottom: 16px;
+    span.error-message {
+      color: map-get($colors, danger);
     }
-    div.switch-sign-div {
-      font-size: 1.7rem;
-      margin-bottom: 16px;
-      span {
-        color: map-get($colors, wiple-blue);
-        cursor: pointer;
-      }
-      span:hover {
-        text-decoration: underline;
-      }
+  }
+  div.switch-sign-div {
+    font-size: 1.7rem;
+    margin-bottom: 16px;
+    span {
+      color: map-get($colors, wiple-blue);
+      cursor: pointer;
     }
-    div.switch-or-div {
-      text-align: center;
-      margin-bottom: 16px;
+    span:hover {
+      text-decoration: underline;
     }
+  }
+  div.switch-or-div {
+    text-align: center;
+    margin-bottom: 16px;
   }
 }
 
@@ -150,9 +159,4 @@ input.ngx-datepicker-input {
 }
 .ngx-datepicker-calendar-container {
   z-index: 100;
-}
-
-.scroll-content {
-  // overflow: scroll;
-  -webkit-overflow-scrolling: auto;
 }
