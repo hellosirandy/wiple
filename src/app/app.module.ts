@@ -25,6 +25,7 @@ import { ComponentsModule } from '../components/components.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PipesModule } from '../pipes/pipes.module';
 import { ExpenseProvider } from '../providers/expense/expense';
+import { ScrollProvider } from '../providers/scroll/scroll';
 
 declare var require: any
 export function highchartsFactory() {
@@ -77,6 +78,7 @@ export function highchartsFactory() {
       provide: HighchartsStatic,
       useFactory: highchartsFactory
     },
+    ScrollProvider,
   ]
 })
 export class AppModule {}

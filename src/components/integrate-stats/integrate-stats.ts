@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, Input, OnChanges, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, EventEmitter, Input, OnChanges, Output, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
 import { ModalController, Platform } from 'ionic-angular';
 import { Expense, Particle, Piece } from '../../models/models';
 import { ExpenseProvider } from '../../providers/providers';
@@ -13,6 +13,7 @@ export class IntegrateStatsComponent implements AfterViewChecked, OnChanges {
   @ViewChildren('expenseList') expenseList : QueryList<ElementRef>;
   @Input() expenses: Expense;
   @Input() timeInterval: TimeInterval;
+  @Output() scrollToCategory = new EventEmitter<ElementRef>();
   pie: Piece[]=[];
   pile: Particle[];
   mobile: boolean = false;
@@ -42,7 +43,12 @@ export class IntegrateStatsComponent implements AfterViewChecked, OnChanges {
   }
 
   handleCategoryClick(index: number) {
-    this.selectedList === index ? this.selectedList = -1 : this.selectedList = index;
+    if (this.selectedList === index) {
+      this.selectedList = -1;
+    } else {
+      this.selectedList = index;
+      this.scrollToCategory.emit(this.expenseList.toArray()[index]);
+    }
   }
 
   handleExpenseClick(expense) {

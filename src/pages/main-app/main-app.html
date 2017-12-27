@@ -31,7 +31,7 @@
 <ion-content>
   <div [ngSwitch]="mobile">
     <ion-row *ngSwitchCase="false" justify-content-around class="pc-content">
-      <ion-col col-3 class="user-column">
+      <ion-col col-3 class="user-column" [style.maxHeight]="content.contentHeight+'px'">
         <div class="img-div">
           <img [src]="firstUser|async|profilePic:300" alt="" class="photo">
         </div>
@@ -48,12 +48,16 @@
         </pc-datetime>
         <h3 class="total">Total: $ {{expenses | async | totalExpense:'integrate'}}</h3>
         <hr>
-        <integrate-stats
-          [expenses]="expenses | async"
-          [timeInterval]="timeInterval">
-        </integrate-stats>
+        <div class="integrate-stats-div" #pcIntegrateStats [style.maxHeight]="content.contentHeight-pcIntegrateStats.offsetTop+'px'">
+          <integrate-stats 
+            [expenses]="expenses | async" 
+            [timeInterval]="timeInterval" 
+            (scrollToCategory)="scrollToCategory($event)">
+          </integrate-stats>
+        </div>
+        
       </ion-col>
-      <ion-col col-3 class="user-column">
+      <ion-col col-3 class="user-column" [style.maxHeight]="content.contentHeight+'px'">
         <div class="img-div">
           <img [src]="secondUser|async|profilePic:300" alt="" class="photo">
         </div>
@@ -75,10 +79,13 @@
         (switchMobileSelect)="mobileSelect = $event"
         [expenses]="expenses|async">
       </mobile-switch-bar>
-      <integrate-stats *ngIf="mobileSelect==='integrate'"
-        [expenses]="expenses | async"
-        [timeInterval]="timeInterval">
-      </integrate-stats>
+      <div class="integrate-stats-div" #mobileIntegrateStats [style.maxHeight]="content.contentHeight-mobileIntegrateStats.offsetTop+'px'">
+        <integrate-stats *ngIf="mobileSelect==='integrate'"
+          [expenses]="expenses | async"
+          [timeInterval]="timeInterval"
+          (scrollToCategory)="scrollToCategory($event)">
+        </integrate-stats>
+      </div>
       <user-stats *ngIf="mobileSelect !== 'integrate'"
         [expenses]="expenses|async"
         [position]="mobileSelect">

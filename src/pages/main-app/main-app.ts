@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, Platform, PopoverController } from 'ionic-angular';
-import { CoupleProvider, UserProvider, ExpenseProvider } from '../../providers/providers';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Content, NavController, NavParams, Platform, PopoverController } from 'ionic-angular';
+import { CoupleProvider, UserProvider, ExpenseProvider, ScrollProvider } from '../../providers/providers';
 import { Couple, Expense, User } from '../../models/models';
 import { ProfilePopoverPage } from '../profile-popover/profile-popover';
 import { EditExpensePage } from '../edit-expense/edit-expense';
@@ -13,6 +13,9 @@ import { DebtsPage } from '../debts/debts';
   templateUrl: 'main-app.html',
 })
 export class MainAppPage {
+  @ViewChild(Content) content;
+  @ViewChild('pcIntegrateStats') pcIntegrateStats;
+  @ViewChild('mobileIntegrateStats') mobileIntegrateStats;
   mobile: boolean=false;
   cp: Couple;
   coupleKey: string;
@@ -30,6 +33,7 @@ export class MainAppPage {
     public navParams: NavParams,
     plt: Platform,
     public popoverCtrl: PopoverController,
+    private scroll: ScrollProvider,
     public user: UserProvider,
   ) {
     this.mobile = plt.is('mobile')
@@ -66,6 +70,16 @@ export class MainAppPage {
 
   handleDebtsClick() {
     this.navCtrl.push(DebtsPage, {  coupleKey: this.coupleKey });
+  }
+
+  scrollToCategory(event: ElementRef) {
+    if (this.mobile) {
+      console.log('hi');
+      
+      this.scroll.smoothScrollTo(this.mobileIntegrateStats.nativeElement, event.nativeElement.offsetTop - this.mobileIntegrateStats.nativeElement.offsetTop - 60, 700)
+    } else {
+      this.scroll.smoothScrollTo(this.pcIntegrateStats.nativeElement, event.nativeElement.offsetTop - this.pcIntegrateStats.nativeElement.offsetTop - 60, 1000)
+    }
   }
 
 }
