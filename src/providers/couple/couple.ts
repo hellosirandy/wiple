@@ -14,10 +14,13 @@ export class CoupleProvider {
   ) {
   }
 
-  setCouple(coupleKey: string) {
-    return this.storage.set('coupleKey', coupleKey).then(_ => {
-      this.events.publish('couple:setcouple', coupleKey);
-    });
+  async setCouple(coupleKey: string) {
+    if (coupleKey) {
+      await this.storage.set('coupleKey', coupleKey);
+    } else {
+      await this.storage.remove('coupleKey');
+    }
+    this.events.publish('couple:setcouple');
   }
 
   getCoupleKey() {

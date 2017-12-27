@@ -33,8 +33,8 @@ export class CheckPage {
 
   async setUser(authUser: any) {
     const user: User = await this.user.setUser(authUser);
+    await this.couple.setCouple(user.couple);
     if (user.couple) {
-      await this.couple.setCouple(user.couple);
       this.navCtrl.setRoot(MainAppPage);    
     } else {
       this.navCtrl.setRoot(ConnectPage);    

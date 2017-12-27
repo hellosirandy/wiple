@@ -3,7 +3,7 @@ import { Events, Platform, ModalController, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CheckPage } from '../pages/check/check';
-import { UserProvider } from '../providers/providers';
+import { UserProvider, CoupleProvider } from '../providers/providers';
 import { DebtsPage } from '../pages/debts/debts';
 import { LandingPage } from '../pages/landing/landing';
 import { ProfilePage } from '../pages/profile/profile';
@@ -17,6 +17,7 @@ export class MyApp {
   coupleKey: string;
 
   constructor(
+    private couple: CoupleProvider,
     private events: Events,
     platform: Platform, 
     private modalCtrl: ModalController,
@@ -34,8 +35,9 @@ export class MyApp {
   }
 
   async getData() {
-    this.events.subscribe('couple:setcouple', (coupleKey) => {
-      this.coupleKey = coupleKey;
+    this.events.subscribe('couple:setcouple', async () => {
+      this.coupleKey = await this.couple.getCoupleKey();
+      
     });
   }
 
