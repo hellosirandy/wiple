@@ -1,11 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { Content, Platform, Nav } from 'ionic-angular';
+import { Events, Platform, ModalController, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CheckPage } from '../pages/check/check';
-import { CoupleProvider, UserProvider } from '../providers/providers';
+import { UserProvider } from '../providers/providers';
 import { DebtsPage } from '../pages/debts/debts';
 import { LandingPage } from '../pages/landing/landing';
+import { ProfilePage } from '../pages/profile/profile';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,8 +17,9 @@ export class MyApp {
   coupleKey: string;
 
   constructor(
-    private couple: CoupleProvider,
+    private events: Events,
     platform: Platform, 
+    private modalCtrl: ModalController,
     statusBar: StatusBar, 
     splashScreen: SplashScreen,
     private user: UserProvider,
@@ -32,7 +34,9 @@ export class MyApp {
   }
 
   async getData() {
-    this.coupleKey = await this.couple.getCoupleKey();
+    this.events.subscribe('couple:setcouple', (coupleKey) => {
+      this.coupleKey = coupleKey;
+    });
   }
 
   handleSignoutClick() {
@@ -43,6 +47,11 @@ export class MyApp {
 
   handleDebtsClick() {
     this.nav.push(DebtsPage, { coupleKey: this.coupleKey });
+  }
+
+  handleProfileClick() {
+    const modal = this.modalCtrl.create(ProfilePage);
+    modal.present();
   }
 }
 

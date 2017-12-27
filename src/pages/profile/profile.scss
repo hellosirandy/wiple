@@ -1,0 +1,12 @@
+page-profile {
+  div.content {
+    width: 50%;
+    @media (max-width: $sm-screen) {
+      width: 75%;
+    }
+    margin: auto;
+    button[type=submit] {
+      margin-top: 50px;
+    }
+  }
+}

@@ -95,38 +95,41 @@ span.form-errors {
 }
 
 ion-content.signinup {
-  ion-item {
-    padding: 0;
-    div.item-inner {
-      padding-right: 0 !important;
-      ion-label {
-        font-size: 1.8rem;
+  form {
+    width: 50%;
+    @media (max-width: $lg-screen) {
+      width: 75%;
+      
+    }
+    @media (max-width: $sm-screen) {
+      width: 100%;
+    }
+    margin: auto;
+    
+    div.error-div {
+      padding: 20px;
+      background-color: #ffdbdb;
+      border-radius: 18px;
+      margin-bottom: 16px;
+      span.error-message {
+        color: map-get($colors, danger);
       }
     }
-  }
-  div.error-div {
-    padding: 20px;
-    background-color: #ffdbdb;
-    border-radius: 18px;
-    margin-bottom: 16px;
-    span.error-message {
-      color: map-get($colors, danger);
+    div.switch-sign-div {
+      font-size: 1.7rem;
+      margin-bottom: 16px;
+      span {
+        color: map-get($colors, wiple-blue);
+        cursor: pointer;
+      }
+      span:hover {
+        text-decoration: underline;
+      }
     }
-  }
-  div.switch-sign-div {
-    font-size: 1.7rem;
-    margin-bottom: 16px;
-    span {
-      color: map-get($colors, wiple-blue);
-      cursor: pointer;
+    div.switch-or-div {
+      text-align: center;
+      margin-bottom: 16px;
     }
-    span:hover {
-      text-decoration: underline;
-    }
-  }
-  div.switch-or-div {
-    text-align: center;
-    margin-bottom: 16px;
   }
 }
 
@@ -159,4 +162,17 @@ input.ngx-datepicker-input {
 }
 .ngx-datepicker-calendar-container {
   z-index: 100;
+}
+
+ion-item.item-input {
+  padding: 0;
+  border: none !important;
+  box-shadow: unset !important;
+  div.item-inner {
+    padding-right: 0 !important;
+    ion-label {
+      font-size: 1.8rem;
+    }
+    box-shadow: unset !important;
+  }
 }

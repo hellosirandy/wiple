@@ -12,11 +12,13 @@
     <h3 class="title">Debts</h3>
     <form [formGroup]="wiplePayForm" (ngSubmit)="onSubmit()">
       <ng-datepicker formControlName="date" [options]="'day' | datePickerOption"></ng-datepicker>
-      <ion-input placeholder="Description(Optional)" formControlName="description"></ion-input>
+      <ion-item class="item-input" no-lines>
+        <ion-input placeholder="Description(Optional)" formControlName="description"></ion-input>
+      </ion-item>
       <br>
       <ion-row>
         <ion-col col-4>
-          <img [src]="firstUser|async|profilePic" alt="" class="photo">
+          <img [src]="firstUser|async|profilePic:200" alt="" class="photo">
         </ion-col>
         <ion-col col-4>
           <button ion-button icon-only round type="button" (click)="handleTransitionClick()">
@@ -25,14 +27,16 @@
           </button>
         </ion-col>
         <ion-col col-4>
-          <img [src]="secondUser|async|profilePic" alt="" class="photo">
+          <img [src]="secondUser|async|profilePic:200" alt="" class="photo">
         </ion-col>
       </ion-row>
       <br>
       <span class="form-errors" *ngIf="wiplePayForm.get('amount').invalid && submitTried">
         * Amount is required
       </span>
-      <ion-input placeholder="Amount" formControlName="amount" type="number"></ion-input>
+      <ion-item class="item-input" no-lines>
+        <ion-input placeholder="Amount" formControlName="amount" type="number"></ion-input>
+      </ion-item>
       <button class="round-btn" ion-button full type="submit" color="wiple-blue">Confirm</button>
     </form>
   </div>

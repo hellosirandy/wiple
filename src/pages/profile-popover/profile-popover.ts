@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { ModalController, NavController, ViewController } from 'ionic-angular';
 import { UserProvider } from '../../providers/providers';
 import { CheckPage } from '../check/check';
+import { ProfilePage } from '../profile/profile';
 
 @Component({
   selector: 'page-profile-popover',
@@ -10,10 +11,10 @@ import { CheckPage } from '../check/check';
 export class ProfilePopoverPage {
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams,
-    public user: UserProvider,
-    public viewCtrl: ViewController
+    private modalCtrl: ModalController,
+    private navCtrl: NavController, 
+    private user: UserProvider,
+    private viewCtrl: ViewController
   ) {
   }
 
@@ -21,7 +22,9 @@ export class ProfilePopoverPage {
   }
 
   handleProfileClick() {
-    // this.navCtrl.push(ProfilePage);
+    this.viewCtrl.dismiss();
+    const modal = this.modalCtrl.create(ProfilePage);
+    modal.present();
   }
 
   handleSignoutClick() {

@@ -51,9 +51,11 @@
           <h3 class="username">{{firstUser?.displayName || ''}}</h3>
         </ion-col>
         <ion-col col-9 class="input-col">
-          <ion-input placeholder="Amount" formControlName="first" type="number" 
-            [ngClass]="{'error': thirdForm.get('custom.first').invalid && submitTried}">
-          </ion-input>
+          <ion-item class="item-input" no-lines>
+            <ion-input placeholder="Amount" formControlName="first" type="number" 
+              [ngClass]="{'error': thirdForm.get('custom.first').invalid && submitTried}">
+            </ion-input>
+          </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -64,9 +66,11 @@
           <h3 class="username">{{secondUser?.displayName || ''}}</h3>
         </ion-col>
         <ion-col col-9 class="input-col">
-          <ion-input placeholder="Amount" formControlName="second" type="number" 
-            [ngClass]="{'error': thirdForm.get('custom.second').invalid && submitTried}">
-          </ion-input>
+          <ion-item class="item-input" no-lines>
+            <ion-input placeholder="Amount" formControlName="second" type="number" 
+              [ngClass]="{'error': thirdForm.get('custom.second').invalid && submitTried}">
+            </ion-input>
+          </ion-item>
         </ion-col>
       </ion-row>
     </div>

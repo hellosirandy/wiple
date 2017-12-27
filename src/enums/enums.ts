@@ -51,7 +51,16 @@ enum MobileStatsDisplay {
   Second = 'second'
 }
 
+enum ConnectionStatus {
+  Search,
+  Found,
+  Notfound,
+  Sent,
+  Received
+}
+
 export {
+  ConnectionStatus,
   ExpenseCategory,
   ExpenseCategoryColors,
   MobileStatsDisplay,

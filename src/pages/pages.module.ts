@@ -14,6 +14,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { DisplayExpensePage } from './display-expense/display-expense';
 import { WiplePayPage } from './wiple-pay/wiple-pay';
 import { DebtsPage } from './debts/debts';
+import { ProfilePage } from './profile/profile';
 
 @NgModule({
 	declarations: [
@@ -28,6 +29,7 @@ import { DebtsPage } from './debts/debts';
 		DisplayExpensePage,
 		DebtsPage,
 		WiplePayPage,
+		ProfilePage
 	],
 	imports: [
 		IonicPageModule.forChild(CheckPage),
@@ -41,6 +43,7 @@ import { DebtsPage } from './debts/debts';
 		IonicPageModule.forChild(DisplayExpensePage),
 		IonicPageModule.forChild(DebtsPage),
 		IonicPageModule.forChild(WiplePayPage),
+		IonicPageModule.forChild(ProfilePage),
 		ComponentsModule,
 		NgDatepickerModule,
 		PipesModule
@@ -56,7 +59,8 @@ import { DebtsPage } from './debts/debts';
 		EditExpensePage,
 		DisplayExpensePage,
 		DebtsPage,
-		WiplePayPage
+		WiplePayPage,
+		ProfilePage
 	],
 	providers: [
 		

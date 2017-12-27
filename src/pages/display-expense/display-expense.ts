@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Platform, NavController, NavParams, ViewController } from 'ionic-angular';
+import { AlertController, Platform, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
 import { Couple, User } from '../../models/models';
-import { CoupleProvider, UserProvider } from '../../providers/providers';
+import { CoupleProvider, UserProvider, ExpenseProvider } from '../../providers/providers';
 import { Observable } from 'rxjs/Observable';
 import { EditExpensePage } from '../edit-expense/edit-expense';
 import { WiplePayPage } from '../wiple-pay/wiple-pay';
@@ -19,10 +19,13 @@ export class DisplayExpensePage {
   secondUser: Observable<User>;
 
   constructor(
+    private alertCtrl: AlertController,
     private couple: CoupleProvider,
+    private expense: ExpenseProvider,
     private navCtrl: NavController,
     private navParams: NavParams,
     plt: Platform,
+    private toastCtrl: ToastController,
     private user: UserProvider,
     private viewCtrl: ViewController
   ) {
@@ -42,7 +45,34 @@ export class DisplayExpensePage {
   }
 
   remove() {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm remove',
+      message: 'Do you want to remove this expense?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Remove',
+          handler: () => {
+            this.removeExpense();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
 
+  async removeExpense() {
+    await this.expense.removeExpense(this.coupleKey, this.exp);
+    const toast = this.toastCtrl.create({
+      message: 'Expense removed',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+    this.viewCtrl.dismiss();
   }
 
   edit() {

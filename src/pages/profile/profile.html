@@ -1,0 +1,33 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Wiple</ion-title>
+    <ion-buttons end *ngIf="!ios">
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons start *ngIf="ios">
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="content">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <div class="img-div">
+        <img class="photo" [src]="currentUser | async | profilePic:500" alt="">
+      </div>
+      <ion-item no-lines class="item-input">
+        <ion-label color="input-label" stacked>Display Name</ion-label>
+        <ion-input type="text" formControlName="displayName"
+           [ngClass]="{'error': profileForm.get('displayName').invalid && submitTried}">
+        </ion-input>
+      </ion-item>
+      <button *ngIf="profileForm.dirty" class="round-btn" ion-button full color="wiple-blue" type="submit">Save</button>
+    </form>
+  </div>
+</ion-content>

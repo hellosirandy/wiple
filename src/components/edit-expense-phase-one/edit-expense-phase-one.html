@@ -9,11 +9,11 @@
     <h3 class="category">Category:
       <span>{{firstForm.get('category').value}}</span>
     </h3>
-    <span class="form-errors" *ngIf="firstForm.get('description').invalid && submitTried">
-      * Description is required
-    </span>
+    
     <ion-item no-lines>
-      <ion-input placeholder="Description" formControlName="description"></ion-input>
+      <ion-input placeholder="Description" formControlName="description"
+        [ngClass]="{'error': firstForm.get('description').invalid && submitTried}">
+      </ion-input>
     </ion-item>
     <button class="round-btn" ion-button color="wiple-blue" full>
       Continue

@@ -11,10 +11,10 @@ import { Observable } from 'rxjs/Observable';
 export class UserProvider {
 
   constructor(
-    public afAuth: AngularFireAuth,
-    public afDatabase: AngularFireDatabase,
-    public plt: Platform,
-    public storage: Storage,
+    private afAuth: AngularFireAuth,
+    private afDatabase: AngularFireDatabase,
+    private plt: Platform,
+    private storage: Storage,
   ) {
   }
 
@@ -133,6 +133,19 @@ export class UserProvider {
       }
     }
     return this.afDatabase.object<User>('/users/Iqb6ddch7EcvuC1GFzvDHv7XXg62').set(newUser);
+  }
+
+  breakup(userKey: string) {
+    return this.afDatabase.object(`/users/${userKey}/couple`).remove();
+  }
+
+  updateProfile(userKey: string, updates: any) {
+    for (let u in updates) {
+      if (!updates[u]) {
+        delete updates[u];
+      }
+    }
+    return this.afDatabase.object(`/users/${userKey}`).update(updates);
   }
 
 }

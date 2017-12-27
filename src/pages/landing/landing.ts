@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController, NavParams, Platform } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { SigninPage } from '../signin/signin';
 @Component({
   selector: 'page-landing',
@@ -10,7 +10,6 @@ export class LandingPage {
   backgroundImage: string;
 
   constructor(
-    private modalCtrl: ModalController,
     public navCtrl: NavController, 
     public navParams: NavParams,
     plt: Platform

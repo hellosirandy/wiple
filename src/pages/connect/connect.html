@@ -38,19 +38,17 @@
   <ion-row>
     <ion-col col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4>
       <div class="input-section">
-        <form *ngIf="status === 'search'" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-          <label for="email">Enter His/Her Email</label>
-          <span class="form-errors"
-            *ngIf="searchForm.get('email').invalid && submitTried">
-            * Invalid email
-          </span>
-          <ion-input formControlName="email"></ion-input>
-          <button ion-button icon-start class="round-btn" full type="submit" color="wiple-blue">
+        <form *ngIf="status === 0" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+          <ion-item no-lines class="item-input">
+            <ion-label color="input-label" stacked>Enter His/Her Email</ion-label>
+            <ion-input formControlName="email" [ngClass]="{'error': searchForm.get('email').invalid && submitTried}"></ion-input>
+          </ion-item>
+          <button *ngIf="searchForm.dirty" ion-button icon-start class="round-btn" full type="submit" color="wiple-blue">
             <ion-icon name="search"></ion-icon>
             Search
           </button>
         </form>
-        <div *ngIf="status === 'found'" class="submitted-div">
+        <div *ngIf="status === 1" class="submitted-div">
           <h3>{{foundUser.displayName}}</h3>
           <button class="round-btn" 
             *ngIf="currentUserKey !== foundUser.key && !foundUser.couple" 
@@ -67,20 +65,20 @@
             Try other
           </button>
         </div>
-        <div *ngIf="status === 'notfound'" class="submitted-div">
+        <div *ngIf="status === 2" class="submitted-div">
           <h3>User not found.</h3>
           <button ion-button class="round-btn" full color="light" (click)="handleTryOtherClick()">
             Try other
           </button>
         </div>
-        <div *ngIf="status === 'sent'" class="submitted-div">
+        <div *ngIf="status === 3" class="submitted-div">
           <h3>{{foundUser.displayName}}</h3>
           <p class="supplement">Request has been sent</p>
           <button ion-button class="round-btn" full color="light" (click)="removeInvitation()">
             Cancel request
           </button>
         </div>
-        <div *ngIf="status === 'received'" class="submitted-div">
+        <div *ngIf="status === 4" class="submitted-div">
           <h3>{{foundUser.displayName}}</h3>
           <p class="supplement">sent a request to you</p>
           <button ion-button class="round-btn" full color="wiple-blue" (click)="acceptInvitation()">

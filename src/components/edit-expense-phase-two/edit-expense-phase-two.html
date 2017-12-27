@@ -4,8 +4,11 @@
       Same Amount Each
     </button>
     <div #same class="collapse" formGroupName="same" [ngStyle]="{'maxHeight': (amountType==='same' ? sameDivHeight : 0) + 'px'}">
-      <ion-input placeholder="Total amount" formControlName="amount" type="number"
-        [ngClass]="{'error': secondForm.get('same.amount').invalid && submitTried}"></ion-input>
+      
+      <ion-item class="item-input" no-lines>
+        <ion-input placeholder="Total amount" formControlName="amount" type="number"
+          [ngClass]="{'error': secondForm.get('same.amount').invalid && submitTried}"></ion-input>
+      </ion-item>
     </div>
     <button class="round-btn" ion-button color="wiple-light-pink" full (click)="handleButtonClick('diff')" type="button">
       Different Amount
@@ -21,8 +24,10 @@
           <h3 class="username">{{firstUser?.displayName || ''}}</h3>
         </ion-col>
         <ion-col col-9 class="input-col">
-          <ion-input placeholder="Amount" formControlName="firstAmount" type="number"
-            [ngClass]="{'error': secondForm.get('diff.firstAmount').invalid && submitTried}"></ion-input>
+          <ion-item class="item-input" no-lines>
+            <ion-input placeholder="Amount" formControlName="firstAmount" type="number"
+              [ngClass]="{'error': secondForm.get('diff.firstAmount').invalid && submitTried}"></ion-input>
+          </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -33,9 +38,10 @@
           <h3 class="username">{{secondUser?.displayName || ''}}</h3>
         </ion-col>
         <ion-col col-9 class="input-col">
-
-        <ion-input placeholder="Amount" formControlName="secondAmount" type="number" 
-          [ngClass]="{'error': secondForm.get('diff.secondAmount').invalid && submitTried}"></ion-input>
+          <ion-item class="item-input" no-lines>
+            <ion-input placeholder="Amount" formControlName="secondAmount" type="number" 
+              [ngClass]="{'error': secondForm.get('diff.secondAmount').invalid && submitTried}"></ion-input>
+          </ion-item>
         </ion-col>
       </ion-row>
     </div>

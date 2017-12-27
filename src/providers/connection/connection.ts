@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Couple, Invitation } from '../../models/models';
 import { Storage } from '@ionic/Storage';
+import { CoupleProvider } from '../couple/couple';
+import { UserProvider } from '../user/user';
 
 @Injectable()
 export class ConnectionProvider {
 
   constructor(
-    public afDatabase: AngularFireDatabase,
-    public storage: Storage,
+    private afDatabase: AngularFireDatabase,
+    private couple: CoupleProvider,
+    private user: UserProvider,
+    private storage: Storage,
   ) {
 
   }
@@ -34,6 +38,13 @@ export class ConnectionProvider {
     await this.afDatabase.object(`/users/${first}`).update({couple: ref.key});
     await this.afDatabase.object(`/users/${second}`).update({couple: ref.key});
     await this.storage.set('coupleKey', ref.key);
+  }
+
+  async breaup() {
+    const couple = await this.couple.getCouple();
+    await this.user.breakup(couple.first);
+    await this.user.breakup(couple.second);
+    this.couple.breakup(couple);
   }
 
 }

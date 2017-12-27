@@ -33,7 +33,7 @@
     <ion-row *ngSwitchCase="false" justify-content-around class="pc-content">
       <ion-col col-3 class="user-column">
         <div class="img-div">
-          <img [src]="firstUser|async|profilePic" alt="" class="photo">
+          <img [src]="firstUser|async|profilePic:300" alt="" class="photo">
         </div>
         <h3 class="display-name">{{(firstUser|async)?.displayName}}</h3>
         <user-stats [expenses]="expenses|async" [position]="'first'">
@@ -55,7 +55,7 @@
       </ion-col>
       <ion-col col-3 class="user-column">
         <div class="img-div">
-          <img [src]="secondUser|async|profilePic" alt="" class="photo">
+          <img [src]="secondUser|async|profilePic:300" alt="" class="photo">
         </div>
         <h3 class="display-name">{{(secondUser|async)?.displayName}}</h3>
         <user-stats [expenses]="expenses|async" [position]="'second'">

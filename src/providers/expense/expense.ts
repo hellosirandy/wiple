@@ -68,4 +68,8 @@ export class ExpenseProvider {
       return expense.firstExpense + expense.secondExpense;
     }
   }
+
+  removeExpense(coupleKey, expense) {
+    return this.afDatabase.object(`/expenses/${coupleKey}/${expense.key}`).remove();
+  }
 }

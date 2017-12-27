@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConnectionProvider, UserProvider } from '../../providers/providers';
 import { Invitation } from '../../models/models';
 import { CheckPage } from '../check/check';
+import { ConnectionStatus } from '../../enums/enums';
 
 @Component({
   selector: 'page-connect',
@@ -12,7 +13,7 @@ import { CheckPage } from '../check/check';
 })
 export class ConnectPage implements OnInit {
   searchForm: FormGroup;
-  status: string='search';
+  status = ConnectionStatus.Search;
   submitTried: boolean=false;
   foundUser: any;
   foundProfilePic: string;
@@ -74,9 +75,9 @@ export class ConnectPage implements OnInit {
         this.foundUser = user;
         this.foundProfilePic = this.user.getProfilePic(user);
         if (this.currentUserKey === this.currentInvitation.invitee) {
-          this.status = 'received';
+          this.status = ConnectionStatus.Received;
         } else {
-          this.status = 'sent';
+          this.status = ConnectionStatus.Sent;
         }
       });
     } else {
@@ -105,9 +106,9 @@ export class ConnectPage implements OnInit {
         if (user) {
           this.foundUser = user;
           this.foundProfilePic = this.user.getProfilePic(user);
-          this.status = 'found';
+          this.status = ConnectionStatus.Found;
         } else {
-          this.status = 'notfound';
+          this.status = ConnectionStatus.Notfound;
         }
       });
     }
@@ -118,7 +119,7 @@ export class ConnectPage implements OnInit {
     this.foundProfilePic = '';
     this.searchForm.reset();
     this.submitTried = false;
-    this.status = 'search';
+    this.status = ConnectionStatus.Search;
   }
 
   handleSendClick() {
