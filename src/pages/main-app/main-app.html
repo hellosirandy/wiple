@@ -44,10 +44,12 @@
         <pc-datetime 
           [dateTime]="dateTime"
           [timeInterval]="timeInterval"
+          [expenses]="expenses|async"
           (changeTimeInterval)="changeTimeInterval($event)">
         </pc-datetime>
         <h3 class="total">Total: $ {{expenses | async | totalExpense:'integrate'}}</h3>
         <hr>
+        
         <div class="integrate-stats-div" #pcIntegrateStats [style.maxHeight]="content.contentHeight-pcIntegrateStats.offsetTop+'px'">
           <integrate-stats 
             [expenses]="expenses | async" 

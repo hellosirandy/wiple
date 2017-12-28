@@ -176,3 +176,20 @@ ion-item.item-input {
     box-shadow: unset !important;
   }
 }
+
+div.selbtngroup {
+  // display: none !important;
+  visibility: hidden;
+}
+
+my-date-picker {
+  div.mydp {
+    border: unset;
+    input {
+      color: map-get($colors, gray-text) !important;
+      text-align: center;
+      padding: unset !important;
+    }
+  }
+  
+}

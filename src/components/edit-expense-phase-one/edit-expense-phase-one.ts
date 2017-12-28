@@ -66,7 +66,9 @@ export class EditExpensePhaseOneComponent implements OnInit {
     if (this.firstForm.valid) {
       this.state = PhaseState.Continue;
       setTimeout(() => {
-        this.continue.emit(this.firstForm.getRawValue());
+        const value = this.firstForm.getRawValue();
+        value.dateTime = new Date(value.dateTime).getTime();
+        this.continue.emit(value);
       }, 300);
     }
     

@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 import { PagesModule } from '../pages/pages.module';
 
 import { NgDatepickerModule } from 'ng2-datepicker';
+import { MyDatePickerModule } from 'mydatepicker';
 
 import { ChartModule } from 'angular2-highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
@@ -47,7 +48,6 @@ export function highchartsFactory() {
         ios: {
           scrollAssist: false,
           autoFocusAssist: 'instant',
-          // inputBlurring: false,
         }
       }
     }),
@@ -61,6 +61,7 @@ export function highchartsFactory() {
     BrowserAnimationsModule,
     PipesModule,
     ChartModule,
+    MyDatePickerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

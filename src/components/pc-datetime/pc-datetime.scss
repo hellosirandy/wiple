@@ -1,4 +1,26 @@
 pc-datetime {
+  div.date-picker-section {
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    my-date-picker {
+      div.selector {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+    ion-item {
+      color: map-get($colors, gray-text) !important;
+      padding: unset !important;
+      div.item-inner {
+        padding: unset !important;
+        div.input-wrapper {
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
   input[_ngcontent-c0] {
     display: block;
     margin: 0 auto 20px;
@@ -9,6 +31,7 @@ pc-datetime {
     left: 50% !important;
     transform: translateX(-50%);
   }
+  
   div.segment {
     width: 100%;
     border-top: solid 1px #c4c4c4;

@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, EventEmitter, Input, OnChanges, Output, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
+import { AfterContentChecked, Component, ElementRef, EventEmitter, Input, OnChanges, Output, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
 import { ModalController, Platform } from 'ionic-angular';
 import { Expense, Particle, Piece } from '../../models/models';
 import { ExpenseProvider } from '../../providers/providers';
@@ -9,7 +9,7 @@ import { DisplayExpensePage } from '../../pages/display-expense/display-expense'
   selector: 'integrate-stats',
   templateUrl: 'integrate-stats.html'
 })
-export class IntegrateStatsComponent implements AfterViewChecked, OnChanges {
+export class IntegrateStatsComponent implements AfterContentChecked, OnChanges {
   @ViewChildren('expenseList') expenseList : QueryList<ElementRef>;
   @Input() expenses: Expense;
   @Input() timeInterval: TimeInterval;
@@ -36,10 +36,10 @@ export class IntegrateStatsComponent implements AfterViewChecked, OnChanges {
     }
   }
 
-  ngAfterViewChecked() {
-    this.expenseListHeights = this.expenseList.toArray().map(ele => {
+  ngAfterContentChecked() {
+    this.expenseListHeights = this.expenseList ? this.expenseList.toArray().map(ele => {
       return ele.nativeElement.scrollHeight;
-    });
+    }) : [];
   }
 
   handleCategoryClick(index: number) {

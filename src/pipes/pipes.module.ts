@@ -10,6 +10,7 @@ import { DebtPipe } from './debt/debt';
 import { ExtractExpensePipe } from './extract-expense/extract-expense';
 import { TotalDebtsPipe } from './total-debts/total-debts';
 import { SpecialExpensePipe } from './special-expense/special-expense';
+import { YearRangePipe } from './year-range/year-range';
 @NgModule({
 	declarations: [
     ProfilePicPipe,
@@ -22,7 +23,8 @@ import { SpecialExpensePipe } from './special-expense/special-expense';
     DebtPipe,
     ExtractExpensePipe,
     TotalDebtsPipe,
-    SpecialExpensePipe],
+    SpecialExpensePipe,
+    YearRangePipe],
 	imports: [],
 	exports: [
     ProfilePicPipe,
@@ -35,6 +37,7 @@ import { SpecialExpensePipe } from './special-expense/special-expense';
     DebtPipe,
     ExtractExpensePipe,
     TotalDebtsPipe,
-    SpecialExpensePipe]
+    SpecialExpensePipe,
+    YearRangePipe]
 })
 export class PipesModule {}

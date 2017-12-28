@@ -25,6 +25,8 @@ export class MainAppPage {
   firstUser: Observable<User>;
   secondUser: Observable<User>;
   mobileSelect = MobileStatsDisplay.Integrate;
+  contentHeight = 0;
+  pcStatsTop = 0;
 
   constructor(
     public couple: CoupleProvider,
@@ -74,11 +76,9 @@ export class MainAppPage {
 
   scrollToCategory(event: ElementRef) {
     if (this.mobile) {
-      console.log('hi');
-      
       this.scroll.smoothScrollTo(this.mobileIntegrateStats.nativeElement, event.nativeElement.offsetTop - this.mobileIntegrateStats.nativeElement.offsetTop - 60, 700)
     } else {
-      this.scroll.smoothScrollTo(this.pcIntegrateStats.nativeElement, event.nativeElement.offsetTop - this.pcIntegrateStats.nativeElement.offsetTop - 60, 1000)
+      this.scroll.smoothScrollTo(this.pcIntegrateStats.nativeElement, event.nativeElement.offsetTop - this.pcIntegrateStats.nativeElement.offsetTop - 60, 700)
     }
   }
 
