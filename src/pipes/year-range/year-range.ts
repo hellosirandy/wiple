@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Expense } from '../../models/models';
+import { Expense, Interval } from '../../models/models';
 
 @Pipe({
   name: 'yearRange',
@@ -8,22 +8,8 @@ export class YearRangePipe implements PipeTransform {
   /**
    * Takes a value and makes it lowercase.
    */
-  transform(expenses: Expense[]) {
-    let array: number[]=[];
-    if (expenses) {
-      expenses.sort((a, b) => {
-        return a.dateTime - b.dateTime;
-      });
-      const start = new Date(expenses[0].dateTime).getFullYear();
-      const end = new Date(expenses[expenses.length-1].dateTime).getFullYear();
-      for (let i = start; i <= end; i++) {
-        array.push(i);
-      }
-      console.log(expenses);
-      
-      console.log(start, end, expenses.length);
-    }
-    
+  transform(yearRange: Interval) {
+    const array = new Array(yearRange.end - yearRange.start).fill(1).map((_, k) => k + yearRange.start);
     return array;
   }
 }

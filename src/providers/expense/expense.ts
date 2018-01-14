@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import * as moment from 'moment';
-import { Expense, Particle, Piece } from '../../models/models';
+import { Expense, Particle, Piece, Interval } from '../../models/models';
 import { PayType, ExpenseCategoryColors } from '../../enums/enums';
 
 @Injectable()
@@ -71,5 +71,18 @@ export class ExpenseProvider {
 
   removeExpense(coupleKey, expense) {
     return this.afDatabase.object(`/expenses/${coupleKey}/${expense.key}`).remove();
+  }
+
+  getYearRange(coupleKey): Promise<Interval> {
+    return new Promise((resolve, reject) => {
+      this.afDatabase.list<Expense>(`/expenses/${coupleKey}`, ref => ref.orderByChild('dateTime').limitToFirst(1))
+      .valueChanges().take(1).subscribe(start => {
+        this.afDatabase.list<Expense>(`/expenses/${coupleKey}`, ref => ref.orderByChild('dateTime').limitToLast(1))
+        .valueChanges().take(1).subscribe(end => {
+          resolve({ start: new Date(start[0].dateTime).getFullYear(), end: new Date(end[0].dateTime).getFullYear() });
+        });
+      });
+    })
+    
   }
 }

@@ -186,6 +186,7 @@ my-date-picker {
   div.mydp {
     border: unset;
     input {
+      font-size: 16px;
       color: map-get($colors, gray-text) !important;
       text-align: center;
       padding: unset !important;

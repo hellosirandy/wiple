@@ -37,9 +37,10 @@ export class CoupleProvider {
     });
   }
 
-  breakup(couple) {
-    console.log(couple.key);
-    
+  async breakup() {
+    const coupleKey = await this.getCoupleKey();
+    await this.afDatabase.object(`/couples/${coupleKey}`).remove();
+    await this.afDatabase.object(`/expenses/${coupleKey}`).remove();
   }
 
 }

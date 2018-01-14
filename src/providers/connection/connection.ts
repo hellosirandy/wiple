@@ -40,11 +40,11 @@ export class ConnectionProvider {
     await this.storage.set('coupleKey', ref.key);
   }
 
-  async breaup() {
+  async breakup() {
     const couple = await this.couple.getCouple();
     await this.user.breakup(couple.first);
     await this.user.breakup(couple.second);
-    this.couple.breakup(couple);
+    await this.couple.breakup();
   }
 
 }
