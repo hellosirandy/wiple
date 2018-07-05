@@ -6,6 +6,8 @@ import { ExpenseProvider } from './expense/expense';
 import { TimeProvider } from './time/time';
 import { UserProvider } from './user/user';
 
+import { UserServiceProvider } from './user-service/user-service';
+
 export {
   ApiProvider,
   ChartProvider,
@@ -13,5 +15,6 @@ export {
   CoupleProvider,
   ExpenseProvider,
   TimeProvider,
-  UserProvider
+  UserProvider,
+  UserServiceProvider,
 }

@@ -29,6 +29,7 @@ import { ExpenseProvider } from '../providers/expense/expense';
 
 import { FirebaseConfig } from '../environments/environments';
 import { ChartProvider } from '../providers/chart/chart';
+import { UserServiceProvider } from '../providers/user-service/user-service';
 
 declare var require: any;
 
@@ -77,7 +78,8 @@ export function highchartsFactory() {
       useFactory: highchartsFactory
     },
     ChartProvider,
-    UserProvider
+    UserProvider,
+    UserServiceProvider
   ]
 })
 export class AppModule {}
